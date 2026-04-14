@@ -38,11 +38,35 @@
     }, { threshold: 0.1 });
     secs.forEach(s => reveal.observe(s));
 
-    /* ── Mobile menu ── */
-    function close() { sidebar.classList.remove('open'); overlay.classList.remove('show'); }
-    menuBtn.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('show'); });
-    overlay.addEventListener('click', close);
-    navs.forEach(n => n.addEventListener('click', close));
+    /* ── Mobile menu (with body scroll lock) ── */
+    let scrollY = 0;
+
+    function openMenu() {
+      scrollY = window.scrollY;
+      document.body.style.top = `-${scrollY}px`;
+      document.body.classList.add('menu-open');
+      sidebar.classList.add('open');
+      overlay.classList.add('show');
+    }
+
+    function closeMenu() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+      document.body.classList.remove('menu-open');
+      document.body.style.top = '';
+      window.scrollTo(0, scrollY);
+    }
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    overlay.addEventListener('click', closeMenu);
+    navs.forEach(n => n.addEventListener('click', closeMenu));
+
+    /* close menu on Escape key */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && sidebar.classList.contains('open')) closeMenu();
+    });
 
     /* ── Year ── */
     const yr = document.getElementById('yr');

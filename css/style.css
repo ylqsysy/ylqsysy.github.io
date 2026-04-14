@@ -71,7 +71,13 @@
 
 /* ── reset ── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:32px}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:32px;
+  /* prevent text inflation on orientation change (iOS/Android) */
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
 
 body{
   font-family:var(--sans);
@@ -82,6 +88,18 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   transition:background .35s ease,color .35s ease;
+  /* prevent pull-to-refresh on mobile when sidebar open */
+  overscroll-behavior-y:contain;
+  /* remove tap highlight on Android/HarmonyOS */
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* lock scroll when mobile menu is open */
+body.menu-open{
+  overflow:hidden;
+  position:fixed;
+  inset:0;
+  /* preserve scroll position – set via JS */
 }
 
 a{color:var(--ac);text-decoration:none;transition:color var(--ease)}
@@ -92,7 +110,11 @@ img{max-width:100%;display:block}
 /* ==========================================================
    LAYOUT
    ========================================================== */
-.site{display:flex;min-height:100vh}
+.site{
+  display:flex;
+  min-height:100vh;
+  min-height:100dvh; /* dynamic viewport height – excludes mobile browser chrome */
+}
 
 /* ── sidebar: frosted glass ── */
 .sidebar{
@@ -156,12 +178,16 @@ img{max-width:100%;display:block}
 .nav-link{
   position:relative;display:block;
   padding:10px 14px;
+  /* 44px min touch height */
+  min-height:44px;
+  display:flex;align-items:center;
   border-radius:var(--r-sm);
   font-size:.87rem;font-weight:500;
   color:var(--s-ink-2);
   transition:all var(--ease);
 }
 .nav-link:hover{background:var(--s-hover);color:var(--s-ink)}
+.nav-link:active{background:var(--s-active);color:var(--ac)}
 
 .nav-link.active{
   background:var(--s-active);
@@ -179,19 +205,26 @@ img{max-width:100%;display:block}
 .social{display:flex;gap:16px}
 .social a{
   color:var(--s-ink-2);font-size:1.02rem;
+  /* 44px touch target */
+  min-width:44px;min-height:44px;
+  display:inline-flex;align-items:center;justify-content:center;
   transition:color var(--ease),transform var(--ease);
 }
 .social a:hover{color:var(--ac);transform:translateY(-1px)}
+.social a:active{color:var(--ac);transform:scale(0.92)}
 
 .theme-btn{
   background:var(--s-hover);
   border:1px solid var(--s-border);
   border-radius:var(--r-sm);
-  padding:6px 8px;
+  /* 44px touch target */
+  min-width:44px;min-height:44px;
+  display:inline-flex;align-items:center;justify-content:center;
   cursor:pointer;color:var(--s-ink-2);font-size:.82rem;
   transition:all var(--ease);
 }
 .theme-btn:hover{color:var(--ac);border-color:var(--ac)}
+.theme-btn:active{color:var(--ac);transform:scale(0.92)}
 
 /* ── mobile topbar ── */
 .topbar{
@@ -201,6 +234,10 @@ img{max-width:100%;display:block}
   backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   border-bottom:1px solid var(--s-border);
   padding:0 20px;
+  /* safe area for notch / dynamic island / punch-hole */
+  padding-top:env(safe-area-inset-top,0);
+  padding-left:max(20px,env(safe-area-inset-left,0));
+  padding-right:max(20px,env(safe-area-inset-right,0));
   align-items:center;justify-content:space-between;
   z-index:100;
   transition:background .35s ease;
@@ -208,6 +245,9 @@ img{max-width:100%;display:block}
 .topbar-name{font-weight:600;font-size:.95rem}
 .topbar-btn{
   background:none;border:none;
+  /* 44px minimum touch target (Apple/Google guideline) */
+  min-width:44px;min-height:44px;
+  display:flex;align-items:center;justify-content:center;
   font-size:1.15rem;color:var(--ink);cursor:pointer;
 }
 
@@ -420,22 +460,87 @@ img{max-width:100%;display:block}
 /* ==========================================================
    RESPONSIVE
    ========================================================== */
+
+/* ── tablet ── */
 @media(max-width:1080px){
   .main{padding:52px 32px 40px}
 }
 
+/* ── large phone / small tablet ── */
 @media(max-width:768px){
   .sidebar{
     left:calc(-1*var(--sw) - 20px);
     transition:left .3s ease;
   }
-  .sidebar.open{left:0}
-  .topbar{display:flex}
-  .main{margin-left:0;padding:70px 20px 32px}
+  .sidebar.open{
+    left:0;
+    /* safe area for notch devices in landscape */
+    padding-left:env(safe-area-inset-left,0);
+  }
+  .topbar{
+    display:flex;
+    height:calc(54px + env(safe-area-inset-top,0));
+  }
+  .main{
+    margin-left:0;
+    padding:calc(70px + env(safe-area-inset-top,0)) 20px 32px;
+    /* safe area left/right for landscape */
+    padding-left:max(20px,env(safe-area-inset-left,0));
+    padding-right:max(20px,env(safe-area-inset-right,0));
+    /* safe area bottom for gesture bar */
+    padding-bottom:max(32px,env(safe-area-inset-bottom,0));
+  }
   .wrap{max-width:100%}
   .heading{font-size:1.45rem}
+
+  /* cards: tighter padding on mobile */
+  .prose{padding:22px 20px}
+  .r-block{padding:20px 20px}
+
   .edu-row{flex-direction:column;gap:4px}
   .edu-year{align-self:flex-start}
   .interests{flex-direction:column;gap:8px}
   .interests li:not(:last-child){margin-right:0}
+
+  /* footer with safe area */
+  .foot{
+    padding-bottom:max(24px,env(safe-area-inset-bottom,0));
+  }
+
+  /* disable hover effects on touch (avoid sticky hover) */
+  .r-block:hover{box-shadow:var(--sh-s);transform:none}
+  .avatar:hover{transform:none;box-shadow:var(--sh-m)}
+
+  /* touch-friendly active states */
+  .r-block:active{box-shadow:var(--sh-m);transform:scale(0.99)}
+  .edu-row:active{background:var(--ac-soft)}
+}
+
+/* ── small phone (< 400px, e.g. iPhone SE / older Android) ── */
+@media(max-width:400px){
+  .sidebar-inner{padding:40px 20px 24px}
+  .avatar{width:100px;height:100px}
+  .pf-name{font-size:1.05rem}
+  .main{padding-left:max(16px,env(safe-area-inset-left,0));padding-right:max(16px,env(safe-area-inset-right,0))}
+  .heading{font-size:1.3rem}
+  .prose{padding:18px 16px}
+  .prose p{font-size:.9rem}
+  .r-block{padding:18px 16px}
+  .r-block h3{font-size:.9rem}
+  .r-block p{font-size:.84rem}
+  .foot{margin-top:56px}
+}
+
+/* ── prefer reduced motion ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+  html{scroll-behavior:auto}
+}
+
+/* ── landscape phone ── */
+@media(max-height:500px) and (orientation:landscape){
+  .topbar{height:44px;padding-top:0}
+  .main{padding-top:56px}
+  .sec{margin-bottom:40px}
+  .foot{margin-top:48px}
 }
