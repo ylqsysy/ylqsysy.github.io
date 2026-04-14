@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="is-loading">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -43,13 +43,21 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <!-- Cursor glow (desktop only) -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
   <div class="site">
 
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-inner">
         <div class="profile">
-          <div class="avatar"><img src="images/avatar.png" alt="Yannan Zhou"></div>
+          <div class="avatar">
+            <img src="images/avatar.png" alt="Yannan Zhou">
+            <div class="avatar-ring"></div>
+          </div>
           <h1 class="pf-name">Yannan Zhou</h1>
           <span class="pf-cn">周彦男</span>
           <p class="pf-role">M.Sc. Candidate<br>Surveying Engineering</p>

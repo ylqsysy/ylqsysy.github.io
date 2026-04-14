@@ -1,5 +1,13 @@
 (() => {
   'use strict';
+
+  /* ── Page load sequence ── */
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove('is-loading');
+    });
+  });
+
   document.addEventListener('DOMContentLoaded', () => {
 
     const root    = document.documentElement;
@@ -10,7 +18,9 @@
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
 
-    /* ── Theme ── */
+    /* ═══════════════════════════════════════════
+       Theme
+       ═══════════════════════════════════════════ */
     if (localStorage.getItem('theme') === 'dark') root.setAttribute('data-theme', 'dark');
 
     toggle.addEventListener('click', () => {
@@ -19,7 +29,60 @@
       localStorage.setItem('theme', next);
     });
 
-    /* ── Active nav on scroll ── */
+    /* ═══════════════════════════════════════════
+       Scroll progress bar
+       ═══════════════════════════════════════════ */
+    const progressBar = document.getElementById('scrollProgress');
+    let ticking = false;
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    /* ═══════════════════════════════════════════
+       Cursor glow (desktop only)
+       ═══════════════════════════════════════════ */
+    const glow = document.getElementById('cursorGlow');
+    const isTouch = matchMedia('(hover:none)').matches;
+
+    if (!isTouch && glow) {
+      let glowX = 0, glowY = 0, curX = 0, curY = 0;
+
+      document.addEventListener('mousemove', e => {
+        curX = e.clientX;
+        curY = e.clientY;
+        if (!glow.classList.contains('active')) glow.classList.add('active');
+      });
+
+      document.addEventListener('mouseleave', () => {
+        glow.classList.remove('active');
+      });
+
+      /* smooth lerp follow */
+      function lerpGlow() {
+        glowX += (curX - glowX) * 0.08;
+        glowY += (curY - glowY) * 0.08;
+        glow.style.left = glowX + 'px';
+        glow.style.top = glowY + 'px';
+        requestAnimationFrame(lerpGlow);
+      }
+      lerpGlow();
+    }
+
+    /* ═══════════════════════════════════════════
+       Active nav on scroll
+       ═══════════════════════════════════════════ */
     const navObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -30,15 +93,43 @@
     }, { rootMargin: '-25% 0px -55% 0px' });
     secs.forEach(s => navObs.observe(s));
 
-    /* ── Section reveal ── */
+    /* ═══════════════════════════════════════════
+       Section reveal (staggered)
+       ═══════════════════════════════════════════ */
     const reveal = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); reveal.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          reveal.unobserve(e.target);
+        }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
     secs.forEach(s => reveal.observe(s));
 
-    /* ── Mobile menu (with body scroll lock) ── */
+    /* ═══════════════════════════════════════════
+       Magnetic contact cards (desktop)
+       ═══════════════════════════════════════════ */
+    if (!isTouch) {
+      document.querySelectorAll('.contact-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          const rotateX = -(y / rect.height) * 8;
+          const rotateY = (x / rect.width) * 8;
+          card.style.transform =
+            `translateY(-4px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    }
+
+    /* ═══════════════════════════════════════════
+       Mobile menu (body scroll lock)
+       ═══════════════════════════════════════════ */
     let scrollY = 0;
 
     function openMenu() {
@@ -63,12 +154,13 @@
     overlay.addEventListener('click', closeMenu);
     navs.forEach(n => n.addEventListener('click', closeMenu));
 
-    /* close menu on Escape key */
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && sidebar.classList.contains('open')) closeMenu();
     });
 
-    /* ── Year ── */
+    /* ═══════════════════════════════════════════
+       Year
+       ═══════════════════════════════════════════ */
     const yr = document.getElementById('yr');
     if (yr) yr.textContent = new Date().getFullYear();
   });
