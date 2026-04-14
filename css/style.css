@@ -196,12 +196,12 @@ img{max-width:100%;display:block}
 .sb-row a:hover{color:var(--ac)}
 
 /* nav */
-.nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.nav{display:flex;flex-direction:column;gap:2px}
 
 .nav-link{
   display:flex;align-items:center;gap:var(--sp-xs);
   padding:var(--sp-xs) var(--sp-s);
-  min-height:40px;
+  min-height:44px;
   border-radius:var(--r-sm);
   font-size:.82rem;font-weight:500;
   color:var(--s-ink-2);
@@ -215,8 +215,8 @@ img{max-width:100%;display:block}
 
 /* ── sidebar external links ── */
 .sb-links{
-  margin-top:var(--sp-s);
-  padding-top:var(--sp-s);
+  margin-top:auto;
+  padding-top:var(--sp-m);
   border-top:1px solid var(--s-border);
   display:flex;flex-direction:column;gap:2px;
 }
@@ -423,144 +423,6 @@ img{max-width:100%;display:block}
 }
 
 /* ==========================================================
-   NEWS (timeline)
-   ========================================================== */
-.news-list{
-  border-left:2px solid var(--border);
-  padding-left:var(--sp-l);
-  margin-left:var(--sp-xs);
-}
-.news-item{
-  position:relative;
-  padding-bottom:var(--sp-m);
-}
-.news-item:last-child{padding-bottom:0}
-
-.news-item::before{
-  content:'';
-  position:absolute;
-  left:calc(-1 * var(--sp-l) - 5px);
-  top:6px;
-  width:8px;height:8px;
-  border-radius:50%;
-  background:var(--ac);
-  border:2px solid var(--bg);
-}
-
-.news-date{
-  display:block;
-  font-size:.72rem;
-  font-weight:600;
-  letter-spacing:.06em;
-  color:var(--ac);
-  text-transform:uppercase;
-  margin-bottom:4px;
-  font-variant-numeric:tabular-nums;
-}
-.news-item p{
-  font-size:.875rem;
-  color:var(--ink-2);
-  line-height:1.618;
-}
-
-/* ==========================================================
-   RESEARCH
-   ========================================================== */
-.r-block{
-  padding:var(--sp-l);
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  box-shadow:var(--sh-s);
-  transition:all var(--ease);
-  position:relative;
-  overflow:hidden;
-  display:flex;flex-direction:column;
-}
-.r-block::before{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--ac),transparent 70%);
-  opacity:.55;
-  transition:opacity var(--ease);
-}
-.r-block:hover{
-  box-shadow:var(--sh-m);
-  transform:translateY(-2px);
-}
-.r-block:hover::before{opacity:1}
-
-.r-icon{
-  width:34px;height:34px;
-  border-radius:var(--r-sm);
-  background:var(--ac-soft);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--ac);font-size:.82rem;
-  margin-bottom:var(--sp-s);
-  flex-shrink:0;
-}
-
-.r-block h3{
-  font-size:.92rem;font-weight:600;
-  color:var(--ink);margin-bottom:var(--sp-xs);
-  letter-spacing:-.01em;
-}
-.r-block p{
-  font-size:.84rem;color:var(--ink-2);
-  line-height:1.75;flex:1;
-}
-
-.r-tags{
-  display:flex;flex-wrap:wrap;gap:6px;
-  margin-top:var(--sp-s);
-}
-.tag{
-  display:inline-block;
-  font-size:.68rem;font-weight:500;
-  padding:3px 10px;
-  border-radius:99px;
-  background:var(--ac-soft);
-  color:var(--ac);
-  letter-spacing:.02em;
-}
-
-/* ==========================================================
-   SKILLS & TOOLS
-   ========================================================== */
-.skill-card{
-  padding:var(--sp-m);
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  box-shadow:var(--sh-xs);
-  transition:all var(--ease);
-}
-.skill-card:hover{box-shadow:var(--sh-s);transform:translateY(-1px)}
-
-.skill-card h3{
-  font-size:.82rem;font-weight:600;
-  color:var(--ink);margin-bottom:var(--sp-s);
-  display:flex;align-items:center;gap:var(--sp-xs);
-}
-.skill-card h3 i{
-  color:var(--ac);font-size:.78rem;
-}
-
-.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
-
-.tag-s{
-  display:inline-block;
-  font-size:.7rem;font-weight:500;
-  padding:4px 10px;
-  border-radius:var(--r-sm);
-  background:var(--bg);
-  border:1px solid var(--border);
-  color:var(--ink-2);
-  transition:all var(--ease);
-}
-.tag-s:hover{border-color:var(--ac);color:var(--ac)}
-
-/* ==========================================================
    PUBLICATIONS
    ========================================================== */
 .pub-note{
@@ -647,8 +509,6 @@ img{max-width:100%;display:block}
 
 .sec.visible .prose       {animation:fadeUp .5s .05s both}
 .sec.visible .grid-2      {animation:fadeUp .5s .1s both}
-.sec.visible .grid-3      {animation:fadeUp .5s .1s both}
-.sec.visible .news-list   {animation:fadeUp .5s .08s both}
 .sec.visible .pub-note    {animation:fadeUp .5s .08s both}
 .sec.visible .contact-grid{animation:fadeUp .5s .08s both}
 
@@ -664,7 +524,6 @@ img{max-width:100%;display:block}
 /* ── tablet ── */
 @media(max-width:1200px){
   .main{padding:var(--sp-xl) var(--sp-l) var(--sp-l)}
-  .grid-3{grid-template-columns:repeat(2,1fr)}
 }
 
 /* ── large phone / small tablet ── */
@@ -691,22 +550,17 @@ img{max-width:100%;display:block}
   .wrap{max-width:100%}
   .heading{font-size:1.375rem}
   .grid-2{grid-template-columns:1fr}
-  .grid-3{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
 
   .prose{padding:var(--sp-m)}
-  .r-block{padding:var(--sp-m)}
-  .skill-card{padding:var(--sp-s)}
 
   .edu-row{flex-direction:column;gap:4px}
   .edu-year{align-self:flex-start}
 
   .foot{padding-bottom:max(var(--sp-m),env(safe-area-inset-bottom,0))}
 
-  .r-block:hover{box-shadow:var(--sh-s);transform:none}
   .avatar:hover{transform:none;box-shadow:var(--sh-m)}
-  .r-block:active{box-shadow:var(--sh-m);transform:scale(0.99)}
   .edu-row:active{background:var(--ac-soft)}
+  .contact-card:active{box-shadow:var(--sh-m);transform:scale(0.98)}
 }
 
 /* ── small phone ── */
@@ -721,10 +575,8 @@ img{max-width:100%;display:block}
   .heading{font-size:1.25rem}
   .prose{padding:var(--sp-s)}
   .prose p{font-size:.875rem}
-  .r-block{padding:var(--sp-s)}
-  .r-block h3{font-size:.86rem}
-  .r-block p{font-size:.8rem}
   .pub-note{padding:var(--sp-s);flex-direction:column;align-items:center;text-align:center}
+  .contact-grid{grid-template-columns:1fr}
   .contact-card{padding:var(--sp-m) var(--sp-s)}
   .foot{margin-top:var(--sp-xl)}
 }
