@@ -2,7 +2,6 @@
   'use strict';
 
   document.addEventListener('DOMContentLoaded', () => {
-
     const root    = document.documentElement;
     const toggle  = document.getElementById('themeToggle');
     const secs    = document.querySelectorAll('.sec');
@@ -64,9 +63,9 @@
 
       /* smooth lerp follow — faster factor for responsiveness */
       function lerpGlow() {
-        glowX += (curX - glowX) * 0.12;
-        glowY += (curY - glowY) * 0.12;
-        glow.style.transform = `translate3d(${glowX - 250}px,${glowY - 250}px,0)`;
+        glowX += (curX - glowX) * 0.15;
+        glowY += (curY - glowY) * 0.15;
+        glow.style.transform = `translate3d(${glowX - 300}px,${glowY - 300}px,0)`;
         requestAnimationFrame(lerpGlow);
       }
       lerpGlow();
@@ -95,7 +94,7 @@
         /* if already in viewport, stagger them */
         if (rect.top < window.innerHeight + 50) {
           setTimeout(() => s.classList.add('visible'), delay);
-          delay += 180;
+          delay += 250;
         } else {
           /* observe for later scroll */
           revealObs.observe(s);
