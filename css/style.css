@@ -519,7 +519,7 @@ img{max-width:100%;display:block}
    ========================================================== */
 .scroll-progress{
   position:fixed;top:0;left:0;right:0;
-  height:2px;
+  height:3px;
   background:linear-gradient(90deg,var(--ac),var(--ac-h));
   z-index:9999;
   pointer-events:none;
@@ -534,18 +534,18 @@ img{max-width:100%;display:block}
    ========================================================== */
 .cursor-glow{
   position:fixed;top:0;left:0;
-  width:400px;height:400px;
+  width:500px;height:500px;
   border-radius:50%;
-  background:radial-gradient(circle,var(--ac-soft) 0%,transparent 70%);
+  background:radial-gradient(circle,var(--ac-soft) 0%,transparent 65%);
   pointer-events:none;
-  z-index:0;
+  z-index:10;
   opacity:0;
-  transform:translate3d(-200px,-200px,0);
+  transform:translate3d(-250px,-250px,0);
   will-change:transform,opacity;
   backface-visibility:hidden;
   transition:opacity .6s ease;
 }
-.cursor-glow.active{opacity:1}
+.cursor-glow.active{opacity:.8}
 
 /* ==========================================================
    PAGE LOAD SEQUENCE

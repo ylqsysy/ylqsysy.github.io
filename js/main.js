@@ -1,13 +1,6 @@
 (() => {
   'use strict';
 
-  /* ── Page load sequence ── */
-  window.addEventListener('load', () => {
-    requestAnimationFrame(() => {
-      document.documentElement.classList.remove('is-loading');
-    });
-  });
-
   document.addEventListener('DOMContentLoaded', () => {
 
     const root    = document.documentElement;
@@ -73,7 +66,7 @@
       function lerpGlow() {
         glowX += (curX - glowX) * 0.12;
         glowY += (curY - glowY) * 0.12;
-        glow.style.transform = `translate3d(${glowX - 200}px,${glowY - 200}px,0)`;
+        glow.style.transform = `translate3d(${glowX - 250}px,${glowY - 250}px,0)`;
         requestAnimationFrame(lerpGlow);
       }
       lerpGlow();
@@ -93,17 +86,49 @@
     secs.forEach(s => navObs.observe(s));
 
     /* ═══════════════════════════════════════════
-       Section reveal (staggered)
+       Section reveal (staggered, delayed until load)
        ═══════════════════════════════════════════ */
-    const reveal = new IntersectionObserver(entries => {
+    function startReveals() {
+      let delay = 0;
+      secs.forEach(s => {
+        const rect = s.getBoundingClientRect();
+        /* if already in viewport, stagger them */
+        if (rect.top < window.innerHeight + 50) {
+          setTimeout(() => s.classList.add('visible'), delay);
+          delay += 180;
+        } else {
+          /* observe for later scroll */
+          revealObs.observe(s);
+        }
+      });
+    }
+    const revealObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('visible');
-          reveal.unobserve(e.target);
+          revealObs.unobserve(e.target);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
-    secs.forEach(s => reveal.observe(s));
+
+    /* ═══════════════════════════════════════════
+       Page load → trigger reveals
+       ═══════════════════════════════════════════ */
+    function onReady() {
+      root.classList.remove('is-loading');
+      /* wait for sidebar/main fade-in to finish, then reveal sections */
+      setTimeout(startReveals, 500);
+    }
+
+    if (document.readyState === 'complete') {
+      requestAnimationFrame(onReady);
+    } else {
+      window.addEventListener('load', () => requestAnimationFrame(onReady));
+      /* safety timeout for slow networks (fonts etc.) */
+      setTimeout(() => {
+        if (root.classList.contains('is-loading')) onReady();
+      }, 3500);
+    }
 
     /* ═══════════════════════════════════════════
        Magnetic contact cards (desktop)
