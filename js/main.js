@@ -38,8 +38,8 @@
     function updateProgress() {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      progressBar.style.width = progress + '%';
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+      progressBar.style.transform = `scaleX(${progress})`;
       ticking = false;
     }
 
@@ -63,18 +63,17 @@
         curX = e.clientX;
         curY = e.clientY;
         if (!glow.classList.contains('active')) glow.classList.add('active');
-      });
+      }, { passive: true });
 
       document.addEventListener('mouseleave', () => {
         glow.classList.remove('active');
       });
 
-      /* smooth lerp follow */
+      /* smooth lerp follow — faster factor for responsiveness */
       function lerpGlow() {
-        glowX += (curX - glowX) * 0.08;
-        glowY += (curY - glowY) * 0.08;
-        glow.style.left = glowX + 'px';
-        glow.style.top = glowY + 'px';
+        glowX += (curX - glowX) * 0.12;
+        glowY += (curY - glowY) * 0.12;
+        glow.style.transform = `translate3d(${glowX - 200}px,${glowY - 200}px,0)`;
         requestAnimationFrame(lerpGlow);
       }
       lerpGlow();
@@ -103,7 +102,7 @@
           reveal.unobserve(e.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
     secs.forEach(s => reveal.observe(s));
 
     /* ═══════════════════════════════════════════
@@ -118,7 +117,7 @@
           const rotateX = -(y / rect.height) * 8;
           const rotateY = (x / rect.width) * 8;
           card.style.transform =
-            `translateY(-4px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            `translate3d(0,-4px,0) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
 
         card.addEventListener('mouseleave', () => {
