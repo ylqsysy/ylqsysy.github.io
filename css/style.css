@@ -519,6 +519,15 @@ img{max-width:100%;display:block}
   text-align:center;
 }
 .foot p{font-size:.72rem;color:var(--ink-3);letter-spacing:.02em}
+.orcid-badge{margin-top:var(--sp-s)}
+.orcid-badge a{
+  display:inline-flex;align-items:center;gap:.4em;
+  color:var(--ink-3);text-decoration:none;
+  font-size:.72rem;letter-spacing:.02em;
+  transition:color .2s ease;
+}
+.orcid-badge a:hover{color:#a6ce39}
+.orcid-badge img{vertical-align:middle;flex-shrink:0}
 
 /* ==========================================================
    SCROLL PROGRESS BAR
