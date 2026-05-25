@@ -22,56 +22,6 @@
     });
 
     /* ═══════════════════════════════════════════
-       Scroll progress bar
-       ═══════════════════════════════════════════ */
-    const progressBar = document.getElementById('scrollProgress');
-    let ticking = false;
-
-    function updateProgress() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-      progressBar.style.transform = `scaleX(${progress})`;
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateProgress);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    /* ═══════════════════════════════════════════
-       Cursor glow (desktop only)
-       ═══════════════════════════════════════════ */
-    const glow = document.getElementById('cursorGlow');
-    const isTouch = matchMedia('(hover:none)').matches;
-
-    if (!isTouch && glow) {
-      let glowX = 0, glowY = 0, curX = 0, curY = 0;
-
-      document.addEventListener('mousemove', e => {
-        curX = e.clientX;
-        curY = e.clientY;
-        if (!glow.classList.contains('active')) glow.classList.add('active');
-      }, { passive: true });
-
-      document.addEventListener('mouseleave', () => {
-        glow.classList.remove('active');
-      });
-
-      /* smooth lerp follow — faster factor for responsiveness */
-      function lerpGlow() {
-        glowX += (curX - glowX) * 0.15;
-        glowY += (curY - glowY) * 0.15;
-        glow.style.transform = `translate3d(${glowX - 300}px,${glowY - 300}px,0)`;
-        requestAnimationFrame(lerpGlow);
-      }
-      lerpGlow();
-    }
-
-    /* ═══════════════════════════════════════════
        Active nav on scroll
        ═══════════════════════════════════════════ */
     const navObs = new IntersectionObserver(entries => {
@@ -127,27 +77,6 @@
       setTimeout(() => {
         if (root.classList.contains('is-loading')) onReady();
       }, 3500);
-    }
-
-    /* ═══════════════════════════════════════════
-       Magnetic contact cards (desktop)
-       ═══════════════════════════════════════════ */
-    if (!isTouch) {
-      document.querySelectorAll('.contact-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          const rotateX = -(y / rect.height) * 8;
-          const rotateY = (x / rect.width) * 8;
-          card.style.transform =
-            `translate3d(0,-4px,0) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = '';
-        });
-      });
     }
 
     /* ═══════════════════════════════════════════
