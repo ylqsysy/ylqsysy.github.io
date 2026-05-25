@@ -110,6 +110,18 @@ a:hover{color:var(--ac-h)}
 img{max-width:100%;display:block}
 ::selection{background:var(--ac-soft);color:var(--ac)}
 
+.bg-texture {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,100 Q100,50 200,100 T400,100 M0,200 Q100,150 200,200 T400,200 M0,300 Q100,250 200,300 T400,300 M50,0 Q100,100 50,200 T50,400 M150,0 Q200,100 150,200 T150,400 M250,0 Q300,100 250,200 T250,400 M350,0 Q400,100 350,200 T350,400' fill='none' stroke='%23a3a09a' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: auto, 800px 800px;
+}
+[data-theme="dark"] .bg-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,100 Q100,50 200,100 T400,100 M0,200 Q100,150 200,200 T400,200 M0,300 Q100,250 200,300 T400,300 M50,0 Q100,100 50,200 T50,400 M150,0 Q200,100 150,200 T150,400 M250,0 Q300,100 250,200 T250,400 M350,0 Q400,100 350,200 T350,400' fill='none' stroke='%235c5a56' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E");
+}
+
 /* ==========================================================
    LAYOUT
    ========================================================== */
@@ -295,11 +307,8 @@ img{max-width:100%;display:block}
   display:flex;justify-content:center;
   padding:var(--sp-xl) var(--sp-xl) var(--sp-xl);
   background-color:var(--bg);
-  background-image:
-    radial-gradient(ellipse 70% 50% at 15% -5%,var(--glow-a),transparent),
-    radial-gradient(ellipse 50% 40% at 85% 90%,var(--glow-b),transparent),
-    radial-gradient(var(--dots) 1px,transparent 1px);
-  background-size:200% 200%,200% 200%,20px 20px;
+  position: relative;
+  z-index: 1;
   transition:background-color .35s ease;
 }
 
@@ -320,13 +329,14 @@ img{max-width:100%;display:block}
 
 .heading{
   display:flex;align-items:center;gap:var(--sp-m);
-  font-family:var(--serif);
-  font-size:1.75rem;
-  font-style:italic;
-  font-weight:400;
-  letter-spacing:-.015em;
+  font-family:'Space Grotesk', var(--sans);
+  font-size:2.5rem;
+  font-weight:700;
+  letter-spacing:-.03em;
   color:var(--ink);
   margin-bottom:var(--sp-l);
+  line-height:1.1;
+  margin-left:-2rem;
 }
 .heading::after{
   content:'';flex:1;height:1px;
@@ -346,17 +356,17 @@ img{max-width:100%;display:block}
    ABOUT
    ========================================================== */
 .prose{
-  padding:var(--sp-l) var(--sp-l);
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  box-shadow:var(--sh-s);
-  margin-bottom:var(--sp-m);
-  transition:background .35s ease,border-color .35s ease;
+  padding:0;
+  background:transparent;
+  border:none;
+  box-shadow:none;
+  margin-bottom:var(--sp-xl);
 }
 .prose p{
-  font-size:.95rem;color:var(--ink-2);
-  line-height:1.85;margin-bottom:var(--sp-s);
+  font-size:1.05rem;
+  color:var(--ink);
+  line-height:1.8;
+  margin-bottom:var(--sp-s);
 }
 .prose p:last-child{margin-bottom:0}
 
@@ -406,11 +416,11 @@ img{max-width:100%;display:block}
    ========================================================== */
 .pub-note{
   display:flex;align-items:flex-start;gap:var(--sp-m);
-  padding:var(--sp-l);
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  box-shadow:var(--sh-xs);
+  padding:var(--sp-m) 0;
+  background:transparent;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  border-radius:0;
 }
 .pub-note > i{
   font-size:1.125rem;color:var(--ac);
@@ -432,20 +442,21 @@ img{max-width:100%;display:block}
   gap:var(--sp-m);
 }
 .contact-card{
-  display:flex;flex-direction:column;align-items:center;
-  text-align:center;
-  padding:var(--sp-l) var(--sp-m);
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  box-shadow:var(--sh-xs);
-  transition:box-shadow .3s ease,border-color .3s ease,
-             transform .3s ease;
+  display:flex;flex-direction:column;align-items:flex-start;
+  text-align:left;
+  padding:var(--sp-m) 0;
+  background:transparent;
+  border-top:1px solid var(--border);
+  border-bottom:none;
+  border-left:none;
+  border-right:none;
+  border-radius:0;
+  box-shadow:none;
+  transition:border-color .3s ease, transform .3s ease;
   text-decoration:none;
 }
 .contact-card:hover{
-  box-shadow:var(--sh-m);
-  transform:translate3d(0,-2px,0);
+  transform:translate3d(5px,0,0);
   border-color:var(--ac);
 }
 .contact-card i{
@@ -594,10 +605,10 @@ html:not(.is-loading) .topbar{
     padding-bottom:max(var(--sp-l),env(safe-area-inset-bottom,0));
   }
   .wrap{max-width:100%}
-  .heading{font-size:1.375rem}
+  .heading{font-size:1.675rem; margin-left: 0;}
   .grid-2{grid-template-columns:1fr}
 
-  .prose{padding:var(--sp-m)}
+  .prose{padding: 0;}
 
   .edu-row{flex-direction:column;gap:4px}
   .edu-year{align-self:flex-start}
@@ -614,12 +625,12 @@ html:not(.is-loading) .topbar{
     padding-left:max(var(--sp-s),env(safe-area-inset-left,0));
     padding-right:max(var(--sp-s),env(safe-area-inset-right,0));
   }
-  .heading{font-size:1.25rem}
-  .prose{padding:var(--sp-s)}
+  .heading{font-size:1.5rem}
+  .prose{padding: 0;}
   .prose p{font-size:.875rem}
-  .pub-note{padding:var(--sp-s);flex-direction:column;align-items:center;text-align:center}
+  .pub-note{padding:var(--sp-s) 0;flex-direction:column;align-items:center;text-align:center}
   .contact-grid{grid-template-columns:1fr}
-  .contact-card{padding:var(--sp-m) var(--sp-s)}
+  .contact-card{padding:var(--sp-s) 0;}
   .foot{margin-top:var(--sp-xl)}
 }
 
