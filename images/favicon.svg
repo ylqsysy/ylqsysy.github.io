@@ -1,51 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0f2027"/>
-      <stop offset="50%" stop-color="#1a3a5c"/>
-      <stop offset="100%" stop-color="#234e78"/>
-    </linearGradient>
-    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="gold" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#e8d5a3"/>
-      <stop offset="50%" stop-color="#f0e2b6"/>
-      <stop offset="100%" stop-color="#c9a84c"/>
-    </linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#000" flood-opacity="0.3"/>
-    </filter>
-  </defs>
-
-  <!-- Background rounded square -->
-  <rect width="64" height="64" rx="13" fill="url(#bg)"/>
-
-  <!-- Subtle top shine -->
-  <rect width="64" height="64" rx="13" fill="url(#shine)"/>
-
-  <!-- Inner border -->
-  <rect x="4" y="4" width="56" height="56" rx="9" fill="none" stroke="url(#gold)" stroke-width="0.6" opacity="0.5"/>
-
-  <!-- Decorative top line -->
-  <line x1="18" y1="16" x2="46" y2="16" stroke="url(#gold)" stroke-width="0.7" opacity="0.7"/>
-
-  <!-- Monogram Y -->
-  <text x="22.5" y="43" font-family="'Georgia','Times New Roman',serif" font-size="26" font-weight="700" fill="url(#gold)" filter="url(#shadow)" text-anchor="middle" letter-spacing="-1">Y</text>
-
-  <!-- Divider dot -->
-  <circle cx="32" cy="37" r="1" fill="url(#gold)" opacity="0.6"/>
-
-  <!-- Monogram Z -->
-  <text x="42" y="43" font-family="'Georgia','Times New Roman',serif" font-size="26" font-weight="700" fill="url(#gold)" filter="url(#shadow)" text-anchor="middle" letter-spacing="-1">Z</text>
-
-  <!-- Decorative bottom line -->
-  <line x1="18" y1="49" x2="46" y2="49" stroke="url(#gold)" stroke-width="0.7" opacity="0.7"/>
-
-  <!-- Tiny diamond accents on lines -->
-  <polygon points="15,16 16.5,14.8 18,16 16.5,17.2" fill="url(#gold)" opacity="0.6"/>
-  <polygon points="46,16 47.5,14.8 49,16 47.5,17.2" fill="url(#gold)" opacity="0.6"/>
-  <polygon points="15,49 16.5,47.8 18,49 16.5,50.2" fill="url(#gold)" opacity="0.6"/>
-  <polygon points="46,49 47.5,47.8 49,49 47.5,50.2" fill="url(#gold)" opacity="0.6"/>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Minimalist abstract topographic contour / data stream design -->
+  <rect width="512" height="512" rx="128" fill="#111" />
+  <path d="M 50 256 C 150 50, 350 450, 462 256" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <path d="M 50 156 C 150 -50, 350 350, 462 156" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <path d="M 50 356 C 150 150, 350 550, 462 356" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/>
 </svg>

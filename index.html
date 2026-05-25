@@ -1,206 +1,94 @@
 <!DOCTYPE html>
-<html lang="en" class="is-loading">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Yannan Zhou — Remote Sensing & Geospatial Data Science</title>
   <meta name="description" content="Yannan Zhou (周彦男) – M.Sc. Candidate at Jiangsu Ocean University. Research in satellite remote sensing, land cover change detection, and geospatial data science.">
   <meta name="author" content="Yannan Zhou">
-  <meta name="keywords" content="Yannan Zhou, 周彦男, remote sensing, geospatial data science, land cover change detection, environmental monitoring, Jiangsu Ocean University">
-
-  <!-- Favicon & PWA -->
+  
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.svg">
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#1a365d" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#101012" media="(prefers-color-scheme: dark)">
-
-  <!-- iOS / Android / HarmonyOS mobile -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Yannan Zhou">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="format-detection" content="telephone=no">
-
-  <!-- Open Graph (Facebook, LinkedIn, etc.) -->
-  <meta property="og:type" content="website">
+  
+  <!-- Open Graph -->
   <meta property="og:title" content="Yannan Zhou — Remote Sensing & Geospatial Data Science">
   <meta property="og:description" content="M.Sc. Candidate at Jiangsu Ocean University. Research in satellite remote sensing, land cover change detection, and geospatial data science.">
   <meta property="og:image" content="images/avatar.jpg">
-  <meta property="og:locale" content="en_US">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Yannan Zhou — Remote Sensing & Geospatial Data Science">
-  <meta name="twitter:description" content="M.Sc. Candidate at Jiangsu Ocean University. Research in satellite remote sensing, land cover change detection, and geospatial data science.">
-  <meta name="twitter:image" content="images/avatar.jpg">
-
+  
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <div class="site">
-    <div class="bg-texture"></div>
-
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-inner">
-        <div class="profile">
-          <div class="avatar">
-            <img src="images/avatar.jpg" alt="Yannan Zhou">
-          </div>
-          <h1 class="pf-name">Yannan Zhou</h1>
-          <span class="pf-cn">周彦男</span>
-          <p class="pf-role">M.Sc. Candidate<br>Surveying Engineering</p>
-          <a class="pf-affil" href="https://www.jou.edu.cn" target="_blank">Jiangsu Ocean University</a>
+<body class="theme-dark">
+  <div class="layout">
+    <header class="left-col">
+      <div class="sticky-inner">
+        <div>
+          <h1 class="title">Yannan Zhou</h1>
+          <h2 class="subtitle">Geospatial Data Science & Remote Sensing</h2>
+          <p class="bio">M.Sc. Candidate at Jiangsu Ocean University. Researching satellite remote sensing, land cover change detection, and geospatial data science.</p>
         </div>
-
-        <div class="sb-info">
-          <div class="sb-row"><i class="fas fa-location-dot"></i><span>Lianyungang, Jiangsu, China</span></div>
-          <div class="sb-row"><i class="fas fa-envelope"></i><a href="mailto:yeluoqiushuang@outlook.com">yeluoqiushuang@outlook.com</a></div>
-        </div>
-
-        <nav class="nav" id="nav">
-          <a href="#about" class="nav-link active"><i class="fas fa-user"></i>About</a>
-          <a href="#publications" class="nav-link"><i class="fas fa-book"></i>Publications</a>
-          <a href="#contact" class="nav-link"><i class="fas fa-paper-plane"></i>Contact</a>
+        
+        <nav class="nav">
+          <a href="#about" class="nav-link active"><span class="nav-indicator"></span><span class="nav-text">About</span></a>
+          <a href="#publications" class="nav-link"><span class="nav-indicator"></span><span class="nav-text">Publications</span></a>
+          <a href="#contact" class="nav-link"><span class="nav-indicator"></span><span class="nav-text">Contact</span></a>
         </nav>
 
-        <div class="sb-links">
-          <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="me noopener noreferrer"><i class="ai ai-orcid"></i>ORCID</a>
-          <a href="https://github.com/ylqsysy" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-        </div>
-
-        <div class="sidebar-foot">
-          <div class="social">
-            <a href="mailto:yeluoqiushuang@outlook.com" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="me noopener noreferrer" title="ORCID"><i class="ai ai-orcid"></i></a>
-            <a href="https://github.com/ylqsysy" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          </div>
-          <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
-            <i class="fas fa-circle-half-stroke"></i>
-          </button>
+        <div class="socials">
+          <a href="https://github.com/ylqsysy" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="mailto:yeluoqiushuang@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" aria-label="ORCID"><i class="ai ai-orcid"></i></a>
         </div>
       </div>
-    </aside>
-
-    <!-- Mobile bar -->
-    <header class="topbar" id="topbar">
-      <span class="topbar-name">Yannan Zhou</span>
-      <button class="topbar-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
     </header>
 
-    <!-- Main -->
-    <main class="main">
-      <div class="wrap">
+    <main class="right-col">
+      <section id="about" class="sec">
+        <div class="hero-image-wrap">
+          <img src="images/avatar.jpg" alt="Yannan Zhou" class="hero-image">
+        </div>
+        <div class="prose">
+          <p>I'm a Master's student in Surveying Engineering at <a href="https://www.jou.edu.cn" target="_blank" class="text-link">Jiangsu Ocean University</a>. Before this, I studied Data Science and Big Data Technology at <a href="https://www.zafu.edu.cn" target="_blank" class="text-link">Zhejiang A&amp;F University</a> (B.Sc., 2024).</p>
+          <p>My work sits between remote sensing and data science. I focus on satellite-based environmental monitoring and land cover change detection—combining multi-source Earth observation data with machine learning to track how landscapes shift over time.</p>
+        </div>
+      </section>
 
-        <!-- ── About ── -->
-        <section id="about" class="sec">
-          <h2 class="heading">About</h2>
-
-          <div class="prose">
-            <p>
-              I'm a Master's student in Surveying Engineering at
-              <a href="https://www.jou.edu.cn" target="_blank">Jiangsu Ocean University</a>.
-              Before this, I studied Data Science and Big Data Technology at
-              <a href="https://www.zafu.edu.cn" target="_blank">Zhejiang A&amp;F University</a>
-              (B.Sc., 2024).
-            </p>
-            <p>
-              My work sits between remote sensing and data science. I focus on
-              satellite-based environmental monitoring and land cover change
-              detection&mdash;combining multi-source Earth observation data with
-              machine learning to track how landscapes shift over time.
-            </p>
+      <section id="publications" class="sec">
+        <h2 class="section-title">Publications</h2>
+        <div class="pub-list">
+          <div class="pub-item">
+            <p class="pub-desc">Publications are forthcoming as my M.Sc. research progresses.</p>
+            <p class="pub-link"><a href="https://orcid.org/0009-0007-7879-4081" target="_blank" class="text-link">View ORCID Profile →</a></p>
           </div>
+        </div>
+      </section>
 
-          <div class="grid-2">
-            <div>
-              <h3 class="sub">Research Interests</h3>
-              <ul class="interests">
-                <li>Satellite Remote Sensing</li>
-                <li>Land Cover Change Detection</li>
-                <li>Geospatial Data Science</li>
-                <li>Environmental Monitoring</li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="sub">Education</h3>
-              <div class="edu">
-                <div class="edu-row">
-                  <div class="edu-left">
-                    <span class="edu-degree">M.Sc. in Surveying Engineering</span>
-                    <span class="edu-where">Jiangsu Ocean University</span>
-                  </div>
-                  <span class="edu-year">2024 – 27</span>
-                </div>
-                <div class="edu-row">
-                  <div class="edu-left">
-                    <span class="edu-degree">B.Sc. in Data Science &amp; Big Data</span>
-                    <span class="edu-where">Zhejiang A&amp;F University</span>
-                  </div>
-                  <span class="edu-year">2020 – 24</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <section id="contact" class="sec">
+        <h2 class="section-title">Connect</h2>
+        <div class="contact-links">
+          <a href="mailto:yeluoqiushuang@outlook.com" class="link-item">
+            <i class="fas fa-arrow-right"></i> yeluoqiushuang@outlook.com
+          </a>
+          <a href="https://github.com/ylqsysy" target="_blank" class="link-item">
+            <i class="fas fa-arrow-right"></i> github.com/ylqsysy
+          </a>
+          <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" class="link-item">
+            <i class="fas fa-arrow-right"></i> ORCID: 0009-0007-7879-4081
+          </a>
+        </div>
+      </section>
 
-        <!-- ── Publications ── -->
-        <section id="publications" class="sec">
-          <h2 class="heading">Publications</h2>
-
-          <div class="pub-note">
-            <i class="fas fa-feather-pointed"></i>
-            <div>
-              <p>Publications are forthcoming as my M.Sc. research progresses.</p>
-              <p>See my <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="me noopener noreferrer">ORCID profile</a> for updates.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- ── Contact ── -->
-        <section id="contact" class="sec">
-          <h2 class="heading">Contact</h2>
-
-          <div class="contact-grid">
-            <a href="mailto:yeluoqiushuang@outlook.com" class="contact-card">
-              <i class="fas fa-envelope"></i>
-              <span class="contact-label">Email</span>
-              <span class="contact-val">yeluoqiushuang@outlook.com</span>
-            </a>
-            <a href="https://github.com/ylqsysy" target="_blank" class="contact-card">
-              <i class="fab fa-github"></i>
-              <span class="contact-label">GitHub</span>
-              <span class="contact-val">@ylqsysy</span>
-            </a>
-            <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="me noopener noreferrer" class="contact-card">
-              <i class="ai ai-orcid"></i>
-              <span class="contact-label">ORCID</span>
-              <span class="contact-val">0009-0007-7879-4081</span>
-            </a>
-          </div>
-        </section>
-
-        <footer class="foot">
-          <p>&copy; <span id="yr">2026</span> Yannan Zhou</p>
-          <p class="orcid-badge">
-            <a href="https://orcid.org/0009-0007-7879-4081" target="orcid.widget" rel="me noopener noreferrer">
-              <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID iD icon" width="16" height="16">
-              <span>https://orcid.org/0009-0007-7879-4081</span>
-            </a>
-          </p>
-        </footer>
-
-      </div>
+      <footer class="footer">
+        <p>&copy; <span id="yr">2026</span> Yannan Zhou. Designed with minimalist principles.</p>
+      </footer>
     </main>
   </div>
-
-  <div class="overlay" id="overlay"></div>
-  <script src="js/main.js?v=5"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
