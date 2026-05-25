@@ -1,7 +1,6 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- Minimalist abstract topographic contour / data stream design -->
-  <rect width="512" height="512" rx="128" fill="#111" />
-  <path d="M 50 256 C 150 50, 350 450, 462 256" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/>
-  <path d="M 50 156 C 150 -50, 350 350, 462 156" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/>
-  <path d="M 50 356 C 150 150, 350 550, 462 356" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <rect width="512" height="512" rx="256" fill="#f4f1eb" />
+  <!-- Abstract leaf / intersection shape -->
+  <path d="M150 362 C 150 150, 362 150, 362 362 Z" fill="#465c49" />
+  <path d="M362 150 C 362 362, 150 362, 150 150 Z" fill="none" stroke="#465c49" stroke-width="16" />
 </svg>
