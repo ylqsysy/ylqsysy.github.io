@@ -1,6 +1,8 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" rx="256" fill="#f4f1eb" />
-  <!-- Abstract leaf / intersection shape -->
-  <path d="M150 362 C 150 150, 362 150, 362 362 Z" fill="#465c49" />
-  <path d="M362 150 C 362 362, 150 362, 150 150 Z" fill="none" stroke="#465c49" stroke-width="16" />
+  <!-- Top Face -->
+  <path d="M 256 32 L 480 160 L 256 288 L 32 160 Z" fill="#677c6a"/>
+  <!-- Left Face -->
+  <path d="M 32 160 L 256 288 L 256 480 L 32 352 Z" fill="#465c49"/>
+  <!-- Right Face -->
+  <path d="M 480 160 L 256 288 L 256 480 L 480 352 Z" fill="#2d3b2f"/>
 </svg>
