@@ -226,14 +226,15 @@ a {
 .pub-title {
   font-family: var(--serif);
   font-size: 1.25rem;
+  font-weight: 600;
   color: var(--text-main);
-  line-height: 1.7;
-  margin-bottom: 4px;
+  line-height: 1.6;
+  margin-bottom: 8px;
 }
 
 .pub-authors {
   font-family: var(--serif);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
   line-height: 1.7;
   margin-bottom: 4px;
@@ -241,14 +242,9 @@ a {
 
 .pub-venue {
   font-family: var(--serif);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
   line-height: 1.7;
-  margin-bottom: 20px;
-}
-
-.pub-link a + a {
-  margin-left: 28px;
 }
 
 .pub-link {
