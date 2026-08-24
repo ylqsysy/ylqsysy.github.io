@@ -219,32 +219,11 @@ a {
   gap: 56px;
 }
 
-.pub-item {
-  padding-left: 0;
-}
-
-.pub-title {
+.pub-citation {
   font-family: var(--serif);
   font-size: 1.25rem;
-  font-weight: 600;
   color: var(--text-main);
-  line-height: 1.6;
-  margin-bottom: 8px;
-}
-
-.pub-authors {
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-  margin-bottom: 4px;
-}
-
-.pub-venue {
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 .pub-link {
