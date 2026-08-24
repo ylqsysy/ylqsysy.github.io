@@ -213,15 +213,60 @@ a {
 }
 
 /* Publications */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
 .pub-item {
   padding-left: 0;
 }
 
-.pub-desc {
+.pub-title {
   font-family: var(--serif);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
+  font-weight: 500;
   color: var(--text-main);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.pub-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--text-muted);
   margin-bottom: 16px;
+}
+
+.pub-venue em {
+  font-family: var(--serif);
+}
+
+.pub-me {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.pub-badge {
+  display: inline-block;
+  vertical-align: 1px;
+  margin-left: 6px;
+  padding: 1px 10px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pub-link a + a {
+  margin-left: 28px;
 }
 
 .pub-link {
