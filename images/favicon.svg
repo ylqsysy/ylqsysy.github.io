@@ -1,19 +1,28 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="16" y="16" width="480" height="480" rx="88" fill="#163B30"/>
-  <rect x="36" y="36" width="440" height="440" rx="70" stroke="#2E6353" stroke-width="6"/>
+  <!-- Continuous-curvature squircle base -->
+  <path d="M 256 16 C 480 16 496 32 496 256 C 496 480 480 496 256 496 C 32 496 16 480 16 256 C 16 32 32 16 256 16 Z" fill="#141413"/>
+  <path d="M 256 32 C 464 32 480 48 480 256 C 480 464 464 480 256 480 C 48 480 32 464 32 256 C 32 48 48 32 256 32 Z" stroke="#2D2B27" stroke-width="4"/>
 
-  <!-- Outer hyperspectral prism frame -->
-  <path d="M256 96L416 188V324L256 416L96 324V188L256 96Z" stroke="#7FC4AE" stroke-width="14" stroke-linejoin="round"/>
-  <!-- Inner spectral plane -->
-  <path d="M256 154L356 212V300L256 358L156 300V212L256 154Z" stroke="#F4F1EA" stroke-width="14" stroke-linejoin="round"/>
+  <!-- Low-fi stepped pixel solar/spectral burst in warm ivory -->
+  <g fill="#FAF9F5">
+    <!-- Cardinal pixel beams -->
+    <rect x="236" y="84" width="40" height="84"/>
+    <rect x="236" y="344" width="40" height="84"/>
+    <rect x="84" y="236" width="84" height="40"/>
+    <rect x="344" y="236" width="84" height="40"/>
 
-  <!-- Geodetic reticle crosshairs -->
-  <line x1="256" y1="74" x2="256" y2="178" stroke="#F4F1EA" stroke-width="14" stroke-linecap="round"/>
-  <line x1="256" y1="334" x2="256" y2="438" stroke="#F4F1EA" stroke-width="14" stroke-linecap="round"/>
-  <line x1="74" y1="256" x2="178" y2="256" stroke="#F4F1EA" stroke-width="14" stroke-linecap="round"/>
-  <line x1="334" y1="256" x2="438" y2="256" stroke="#F4F1EA" stroke-width="14" stroke-linecap="round"/>
+    <!-- Diagonal stepped mosaic nodes -->
+    <rect x="132" y="132" width="36" height="36"/>
+    <rect x="168" y="168" width="36" height="36"/>
+    <rect x="344" y="132" width="36" height="36"/>
+    <rect x="308" y="168" width="36" height="36"/>
+    <rect x="132" y="344" width="36" height="36"/>
+    <rect x="168" y="308" width="36" height="36"/>
+    <rect x="344" y="344" width="36" height="36"/>
+    <rect x="308" y="308" width="36" height="36"/>
+  </g>
 
-  <!-- Center target pixel -->
-  <circle cx="256" cy="256" r="46" stroke="#F4F1EA" stroke-width="12"/>
-  <circle cx="256" cy="256" r="24" fill="#D4653B"/>
+  <!-- Anthropic terracotta pixel core -->
+  <rect x="216" y="216" width="80" height="80" fill="#D97757"/>
+  <rect x="236" y="236" width="40" height="40" fill="#FAF9F5"/>
 </svg>

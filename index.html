@@ -7,8 +7,8 @@
   <meta name="description" content="Academic homepage of Yannan Zhou (周彦男), M.Sc. candidate in Surveying Engineering at Jiangsu Ocean University. Research in hyperspectral image classification, multi-source remote sensing, and spatiotemporal forecasting.">
   <meta name="author" content="Yannan Zhou">
 
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=6">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.svg?v=6">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=7">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.svg?v=7">
   <link rel="manifest" href="site.webmanifest">
 
   <!-- Open Graph -->
@@ -20,7 +20,7 @@
   <!-- Fonts & Academic Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
   <script>
@@ -37,76 +37,59 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Subtle topographic contour backdrop with scroll parallax -->
-  <div class="topo-backdrop" aria-hidden="true">
-    <svg class="topo-svg" id="topo-svg" viewBox="0 0 1440 960" preserveAspectRatio="xMidYMid slice" fill="none">
-      <g stroke="currentColor" stroke-width="1">
-        <path d="M-80 180 C 180 110, 390 260, 650 175 C 910 90, 1140 230, 1520 140"/>
-        <path d="M-80 245 C 210 175, 420 330, 695 235 C 970 140, 1185 280, 1520 205"/>
-        <path d="M-80 320 C 245 250, 460 400, 740 305 C 1020 210, 1220 340, 1520 275"/>
-        <path d="M-80 410 C 260 350, 500 485, 795 390 C 1070 300, 1270 420, 1520 360"/>
-        <path d="M90 670 C 290 540, 510 560, 720 675 C 940 795, 1190 710, 1480 570"/>
-        <path d="M40 740 C 260 620, 495 635, 710 745 C 935 860, 1185 775, 1500 645"/>
-        <path d="M-20 820 C 220 710, 470 725, 695 825 C 920 925, 1175 850, 1520 730"/>
-        <ellipse cx="1090" cy="310" rx="230" ry="125" transform="rotate(-12 1090 310)"/>
-        <ellipse cx="1090" cy="310" rx="165" ry="86" transform="rotate(-12 1090 310)"/>
-        <ellipse cx="1090" cy="310" rx="102" ry="50" transform="rotate(-12 1090 310)"/>
-        <ellipse cx="320" cy="540" rx="190" ry="96" transform="rotate(9 320 540)"/>
-        <ellipse cx="320" cy="540" rx="125" ry="60" transform="rotate(9 320 540)"/>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Spectral calibration strip -->
-  <div class="spectral-strip" aria-label="Multispectral wavelength reference">
-    <div class="spectral-bar-wrap" aria-hidden="true">
-      <div class="spectral-bar"></div>
-      <span class="spectral-needle" id="spectral-needle"></span>
-    </div>
-    <div class="container spectral-ticks">
-      <div class="spectral-band-list" role="list">
-        <button type="button" class="band-tick" data-band="Blue" data-wl="490 nm" data-pos="12%" role="listitem">490</button>
-        <button type="button" class="band-tick" data-band="Green" data-wl="560 nm" data-pos="24%" role="listitem">560</button>
-        <button type="button" class="band-tick" data-band="Red" data-wl="665 nm" data-pos="40%" role="listitem">665</button>
-        <button type="button" class="band-tick" data-band="Red Edge" data-wl="705 nm" data-pos="51%" role="listitem">705</button>
-        <button type="button" class="band-tick" data-band="NIR" data-wl="842 nm" data-pos="67%" role="listitem">842</button>
-        <button type="button" class="band-tick" data-band="SWIR-1" data-wl="1610 nm" data-pos="86%" role="listitem">1610 nm</button>
-      </div>
-      <span class="spectral-readout" id="spectral-readout" aria-live="polite">400 to 2500 nm reference</span>
-    </div>
-  </div>
+  <!-- Shared SVG squircle clip-path for continuous-curvature portrait framing -->
+  <svg width="0" height="0" style="position:absolute;pointer-events:none;" aria-hidden="true">
+    <defs>
+      <clipPath id="squircle-portrait" clipPathUnits="objectBoundingBox">
+        <path d="M 0.5,0 C 0.915,0 1,0.068 1,0.5 C 1,0.932 0.915,1 0.5,1 C 0.085,1 0,0.932 0,0.5 C 0,0.068 0.085,0 0.5,0 Z"/>
+      </clipPath>
+    </defs>
+  </svg>
 
   <!-- Masthead -->
   <header class="masthead" id="top">
     <div class="container masthead-inner">
       <a href="#top" class="brand" aria-label="Yannan Zhou home">
-        <svg class="brand-mark" width="24" height="24" viewBox="0 0 512 512" fill="none" aria-hidden="true">
-          <rect x="16" y="16" width="480" height="480" rx="88" fill="#163B30"/>
-          <path d="M256 96L416 188V324L256 416L96 324V188L256 96Z" stroke="#7FC4AE" stroke-width="18" stroke-linejoin="round"/>
-          <path d="M256 154L356 212V300L256 358L156 300V212L256 154Z" stroke="#F4F1EA" stroke-width="18" stroke-linejoin="round"/>
-          <circle cx="256" cy="256" r="28" fill="#D4653B"/>
+        <svg class="brand-mark" width="26" height="26" viewBox="0 0 512 512" fill="none" aria-hidden="true">
+          <path d="M 256 16 C 480 16 496 32 496 256 C 496 480 480 496 256 496 C 32 496 16 480 16 256 C 16 32 32 16 256 16 Z" fill="#141413"/>
+          <g fill="#FAF9F5">
+            <rect x="236" y="84" width="40" height="84"/>
+            <rect x="236" y="344" width="40" height="84"/>
+            <rect x="84" y="236" width="84" height="40"/>
+            <rect x="344" y="236" width="84" height="40"/>
+            <rect x="132" y="132" width="36" height="36"/>
+            <rect x="168" y="168" width="36" height="36"/>
+            <rect x="344" y="132" width="36" height="36"/>
+            <rect x="308" y="168" width="36" height="36"/>
+            <rect x="132" y="344" width="36" height="36"/>
+            <rect x="168" y="308" width="36" height="36"/>
+            <rect x="344" y="344" width="36" height="36"/>
+            <rect x="308" y="308" width="36" height="36"/>
+          </g>
+          <rect x="216" y="216" width="80" height="80" fill="#D97757"/>
+          <rect x="236" y="236" width="40" height="40" fill="#FAF9F5"/>
         </svg>
         <span class="brand-name">Yannan Zhou</span>
         <span class="brand-zh" lang="zh-Hans">周彦男</span>
       </a>
 
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#profile" class="nav-item active" data-section="profile"><span class="nav-num">01</span>Profile</a>
-        <a href="#research" class="nav-item" data-section="research"><span class="nav-num">02</span>Research</a>
-        <a href="#publications" class="nav-item" data-section="publications"><span class="nav-num">03</span>Publications</a>
-        <a href="#background" class="nav-item" data-section="background"><span class="nav-num">04</span>Background</a>
-        <a href="#contact" class="nav-item" data-section="contact"><span class="nav-num">05</span>Contact</a>
+        <a href="#profile" class="nav-item active" data-section="profile">Profile</a>
+        <a href="#research" class="nav-item" data-section="research">Research</a>
+        <a href="#publications" class="nav-item" data-section="publications">Publications</a>
+        <a href="#background" class="nav-item" data-section="background">Education</a>
+        <a href="#contact" class="nav-item" data-section="contact">Contact</a>
       </nav>
 
       <div class="masthead-actions">
         <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme" title="Toggle color theme">
           <span class="theme-dot" aria-hidden="true"></span>
-          <span class="theme-label" id="theme-label">Night Pass</span>
+          <span class="theme-label" id="theme-label">Charcoal</span>
         </button>
         <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open navigation menu">
           <span></span>
@@ -117,30 +100,23 @@
 
     <div class="mobile-drawer" id="mobile-drawer" hidden>
       <nav class="mobile-nav" aria-label="Mobile navigation">
-        <a href="#profile" class="mobile-nav-link"><span class="nav-num">01</span>Profile</a>
-        <a href="#research" class="mobile-nav-link"><span class="nav-num">02</span>Research</a>
-        <a href="#publications" class="mobile-nav-link"><span class="nav-num">03</span>Publications</a>
-        <a href="#background" class="mobile-nav-link"><span class="nav-num">04</span>Background</a>
-        <a href="#contact" class="mobile-nav-link"><span class="nav-num">05</span>Contact</a>
+        <a href="#profile" class="mobile-nav-link">Profile</a>
+        <a href="#research" class="mobile-nav-link">Research</a>
+        <a href="#publications" class="mobile-nav-link">Publications</a>
+        <a href="#background" class="mobile-nav-link">Education</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
       </nav>
     </div>
   </header>
 
-  <div class="page-frame">
-    <!-- Desktop margin rail -->
-    <aside class="margin-rail" aria-hidden="true">
-      <div class="rail-sticky">
-        <span class="rail-plate" id="rail-plate">01</span>
-        <div class="rail-track">
-          <div class="rail-fill" id="rail-fill"></div>
-        </div>
-        <span class="rail-code">OBS</span>
+  <main id="main-content">
+    <!-- Hero with low-fi Bayer dithered mosaic backdrop -->
+    <section class="hero-band" aria-labelledby="hero-heading">
+      <div class="mosaic-horizon" aria-hidden="true">
+        <canvas id="hero-mosaic" class="mosaic-canvas"></canvas>
       </div>
-    </aside>
 
-    <main id="main-content" class="container main-shell">
-      <!-- Hero Plate -->
-      <section class="hero-plate" aria-labelledby="hero-heading">
+      <div class="container hero-container">
         <div class="hero-grid">
           <div class="hero-copy">
             <p class="eyebrow hero-enter" style="--d:0">Surveying Engineering · Jiangsu Ocean University</p>
@@ -168,15 +144,15 @@
             </dl>
 
             <div class="hero-links hero-enter" style="--d:4">
-              <a href="mailto:yeluoqiushuang@outlook.com" class="btn-plate btn-primary">
+              <a href="mailto:yeluoqiushuang@outlook.com" class="btn-squircle btn-primary">
                 <span>Email</span>
                 <span class="btn-arrow" aria-hidden="true">&#8599;</span>
               </a>
-              <a href="https://github.com/ylqsysy" target="_blank" rel="noopener noreferrer" class="btn-plate">
+              <a href="https://github.com/ylqsysy" target="_blank" rel="noopener noreferrer" class="btn-squircle">
                 <span>GitHub</span>
                 <span class="btn-arrow" aria-hidden="true">&#8599;</span>
               </a>
-              <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="noopener noreferrer" class="btn-plate">
+              <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="noopener noreferrer" class="btn-squircle">
                 <i class="ai ai-orcid" aria-hidden="true"></i>
                 <span>ORCID</span>
               </a>
@@ -188,26 +164,36 @@
               <div class="portrait-backplate" aria-hidden="true"></div>
               <figure class="portrait-plate" id="portrait-plate">
                 <div class="portrait-sheen" aria-hidden="true"></div>
-                <span class="fiducial fiducial-tl" aria-hidden="true"></span>
-                <span class="fiducial fiducial-tr" aria-hidden="true"></span>
-                <span class="fiducial fiducial-bl" aria-hidden="true"></span>
-                <span class="fiducial fiducial-br" aria-hidden="true"></span>
                 <div class="portrait-frame">
                   <img src="images/avatar.jpg" alt="Portrait of Yannan Zhou" width="1200" height="1500" loading="eager">
+                  <svg class="portrait-squircle-stroke" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M 200,1 C 366,1 399,34 399,250 C 399,466 366,499 200,499 C 34,499 1,466 1,250 C 1,34 34,1 200,1 Z" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+                  </svg>
                 </div>
                 <figcaption class="portrait-caption">
-                  <span>PLATE 00 / PORTRAIT</span>
                   <span>YANNAN ZHOU</span>
+                  <span>JOU</span>
                 </figcaption>
               </figure>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
+    <div class="container main-flow">
       <!-- Section 01: Profile -->
-      <section id="profile" class="band-section obs-section reveal" data-plate="01">
+      <section id="profile" class="editorial-section obs-section reveal">
         <div class="section-header">
+          <svg class="pixel-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="6" y="2" width="6" height="2" fill="currentColor"/>
+            <rect x="4" y="4" width="2" height="4" fill="currentColor"/>
+            <rect x="12" y="4" width="2" height="4" fill="currentColor"/>
+            <rect x="6" y="8" width="6" height="2" fill="currentColor"/>
+            <rect x="4" y="12" width="10" height="2" fill="currentColor"/>
+            <rect x="2" y="14" width="2" height="2" fill="currentColor"/>
+            <rect x="14" y="14" width="2" height="2" fill="currentColor"/>
+          </svg>
           <span class="section-index">01</span>
           <h2 class="section-heading">Profile</h2>
         </div>
@@ -235,88 +221,86 @@
         </div>
       </section>
 
-      <!-- Section 02: Research & Interactive Spectral-Spatial Schematic -->
-      <section id="research" class="band-section obs-section reveal" data-plate="02">
+      <!-- Section 02: Research -->
+      <section id="research" class="editorial-section obs-section reveal">
         <div class="section-header">
+          <svg class="pixel-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="6" y="2" width="6" height="2" fill="currentColor"/>
+            <rect x="2" y="4" width="4" height="2" fill="currentColor"/>
+            <rect x="12" y="4" width="4" height="2" fill="currentColor"/>
+            <rect x="2" y="6" width="2" height="6" fill="currentColor"/>
+            <rect x="14" y="6" width="2" height="6" fill="currentColor"/>
+            <rect x="7" y="7" width="4" height="4" fill="#D97757"/>
+            <rect x="4" y="12" width="10" height="2" fill="currentColor"/>
+          </svg>
           <span class="section-index">02</span>
           <h2 class="section-heading">Research</h2>
         </div>
 
         <div class="research-grid">
           <article class="research-card reveal" style="--stagger:0">
-            <div class="card-top">
-              <span class="card-num">02.1</span>
-              <span class="card-tag">Hyperspectral ML</span>
+            <figure class="mosaic-plate">
+              <canvas class="mosaic-plate-canvas" data-motif="hyperspectral" aria-hidden="true"></canvas>
+              <div class="lofi-grain" aria-hidden="true"></div>
+            </figure>
+            <div class="research-card-body">
+              <div class="card-top">
+                <span class="card-num">02.1</span>
+                <span class="card-tag">Hyperspectral ML</span>
+              </div>
+              <h3>Hyperspectral Image Classification</h3>
+              <p>Center-targeted spectral-spatial representation learning and state-space sequence modeling for pixel-wise classification in high-dimensional imagery.</p>
             </div>
-            <h3>Hyperspectral Image Classification</h3>
-            <p>Center-targeted spectral-spatial representation learning and state-space sequence modeling for pixel-wise classification in high-dimensional imagery.</p>
           </article>
 
           <article class="research-card reveal" style="--stagger:1">
-            <div class="card-top">
-              <span class="card-num">02.2</span>
-              <span class="card-tag">Earth Observation</span>
+            <figure class="mosaic-plate">
+              <canvas class="mosaic-plate-canvas" data-motif="terrain" aria-hidden="true"></canvas>
+              <div class="lofi-grain" aria-hidden="true"></div>
+            </figure>
+            <div class="research-card-body">
+              <div class="card-top">
+                <span class="card-num">02.2</span>
+                <span class="card-tag">Earth Observation</span>
+              </div>
+              <h3>Multi-Source Remote Sensing &amp; Monitoring</h3>
+              <p>Integrating multi-source Earth observation data with geospatial modeling to monitor environmental conditions and track land cover change.</p>
             </div>
-            <h3>Multi-Source Remote Sensing &amp; Monitoring</h3>
-            <p>Integrating multi-source Earth observation data with geospatial modeling to monitor environmental conditions and track land cover change.</p>
           </article>
 
           <article class="research-card reveal" style="--stagger:2">
-            <div class="card-top">
-              <span class="card-num">02.3</span>
-              <span class="card-tag">Time Series</span>
+            <figure class="mosaic-plate">
+              <canvas class="mosaic-plate-canvas" data-motif="wave" aria-hidden="true"></canvas>
+              <div class="lofi-grain" aria-hidden="true"></div>
+            </figure>
+            <div class="research-card-body">
+              <div class="card-top">
+                <span class="card-num">02.3</span>
+                <span class="card-tag">Time Series</span>
+              </div>
+              <h3>Spatiotemporal Forecasting</h3>
+              <p>Deep sequence and attention-based architectures for urban traffic flow and geospatial time-series forecasting.</p>
             </div>
-            <h3>Spatiotemporal Forecasting</h3>
-            <p>Deep sequence and attention-based architectures for urban traffic flow and geospatial time-series forecasting.</p>
           </article>
-        </div>
-
-        <!-- Interactive Spectral-Spatial Schematic Plate -->
-        <div class="schematic-plate reveal" style="--stagger:1">
-          <div class="schematic-sidebar">
-            <div class="schematic-meta">
-              <span class="schematic-kicker">Interactive Plate · Spectral-Spatial Sampling</span>
-              <h3 class="schematic-title">Center-Target Patch Inspector</h3>
-              <p class="schematic-desc">Move across the 7&#215;7 layered patch stack or switch surface classes below to inspect schematic reflectance signatures across visible, NIR, and SWIR bands.</p>
-            </div>
-
-            <div class="sample-switcher" role="group" aria-label="Surface class presets">
-              <button type="button" class="sample-btn active" data-sample="canopy">Canopy</button>
-              <button type="button" class="sample-btn" data-sample="soil">Soil</button>
-              <button type="button" class="sample-btn" data-sample="water">Water</button>
-            </div>
-
-            <dl class="telemetry-grid">
-              <div>
-                <dt>Target Cell</dt>
-                <dd id="pixel-coord">(3, 3) · Center</dd>
-              </div>
-              <div>
-                <dt>Surface Class</dt>
-                <dd id="sample-name">Vegetation Canopy</dd>
-              </div>
-              <div>
-                <dt>Peak Band</dt>
-                <dd id="peak-band">842 nm (NIR)</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div class="schematic-canvas-wrap">
-            <canvas id="spectral-canvas" aria-label="Interactive schematic showing a 5-layer 7 by 7 hyperspectral patch stack and corresponding reflectance curve"></canvas>
-            <p class="schematic-caption">Schematic: layered spectral-spatial patch stack and center-target reflectance profile (illustrative curves, 400 to 2500 nm).</p>
-          </div>
         </div>
       </section>
 
       <!-- Section 03: Publications -->
-      <section id="publications" class="band-section obs-section reveal" data-plate="03">
+      <section id="publications" class="editorial-section obs-section reveal">
         <div class="section-header">
+          <svg class="pixel-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="3" y="2" width="10" height="2" fill="currentColor"/>
+            <rect x="3" y="4" width="2" height="12" fill="currentColor"/>
+            <rect x="13" y="4" width="2" height="12" fill="currentColor"/>
+            <rect x="5" y="14" width="8" height="2" fill="currentColor"/>
+            <rect x="7" y="6" width="4" height="2" fill="#D97757"/>
+            <rect x="7" y="10" width="4" height="2" fill="currentColor"/>
+          </svg>
           <span class="section-index">03</span>
           <h2 class="section-heading">Publications</h2>
         </div>
 
-        <div class="pub-ledger">
+        <div class="pub-card">
           <article class="pub-entry">
             <div class="pub-meta">
               <span class="pub-index">[01]</span>
@@ -360,14 +344,21 @@
         </div>
       </section>
 
-      <!-- Section 04: Background -->
-      <section id="background" class="band-section obs-section reveal" data-plate="04">
+      <!-- Section 04: Education -->
+      <section id="background" class="editorial-section obs-section reveal">
         <div class="section-header">
+          <svg class="pixel-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="6" y="3" width="6" height="2" fill="currentColor"/>
+            <rect x="2" y="5" width="14" height="2" fill="currentColor"/>
+            <rect x="4" y="7" width="2" height="6" fill="currentColor"/>
+            <rect x="12" y="7" width="2" height="6" fill="currentColor"/>
+            <rect x="6" y="13" width="6" height="2" fill="#D97757"/>
+          </svg>
           <span class="section-index">04</span>
           <h2 class="section-heading">Education</h2>
         </div>
 
-        <div class="edu-ledger">
+        <div class="edu-card">
           <div class="edu-row">
             <div class="edu-degree">M.Sc. Candidate</div>
             <div class="edu-field">Surveying Engineering</div>
@@ -386,13 +377,22 @@
       </section>
 
       <!-- Section 05: Contact -->
-      <section id="contact" class="band-section obs-section reveal" data-plate="05">
+      <section id="contact" class="editorial-section obs-section reveal">
         <div class="section-header">
+          <svg class="pixel-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="2" y="4" width="14" height="2" fill="currentColor"/>
+            <rect x="2" y="6" width="2" height="8" fill="currentColor"/>
+            <rect x="14" y="6" width="2" height="8" fill="currentColor"/>
+            <rect x="4" y="12" width="10" height="2" fill="currentColor"/>
+            <rect x="6" y="6" width="2" height="2" fill="#D97757"/>
+            <rect x="10" y="6" width="2" height="2" fill="#D97757"/>
+            <rect x="8" y="8" width="2" height="2" fill="#D97757"/>
+          </svg>
           <span class="section-index">05</span>
           <h2 class="section-heading">Contact</h2>
         </div>
 
-        <div class="contact-directory">
+        <div class="contact-card">
           <div class="contact-row">
             <span class="contact-num">01</span>
             <span class="contact-kind">Email</span>
@@ -416,17 +416,21 @@
         </div>
       </section>
 
-      <footer class="colophon">
-        <div class="colophon-left">
-          <span>&copy; <span id="yr">2026</span> Yannan Zhou</span>
-          <span class="colophon-sep" aria-hidden="true">/</span>
-          <span>Jiangsu Ocean University</span>
+      <!-- Dark Charcoal Anthropic-style Squircle Footer with Low-Fi Bayer Edge -->
+      <footer class="colophon-card">
+        <canvas id="footer-mosaic" class="footer-mosaic-canvas" aria-hidden="true"></canvas>
+        <div class="colophon-inner">
+          <div class="colophon-left">
+            <span class="colophon-name">&copy; <span id="yr">2026</span> Yannan Zhou</span>
+            <span class="colophon-sep" aria-hidden="true">/</span>
+            <span>Jiangsu Ocean University</span>
+          </div>
+          <button type="button" class="back-top" id="back-top">Back to top &#8593;</button>
         </div>
-        <button type="button" class="back-top" id="back-top">Back to top &#8593;</button>
       </footer>
-    </main>
-  </div>
+    </div>
+  </main>
 
-  <script src="js/main.js?v=6"></script>
+  <script src="js/main.js?v=7"></script>
 </body>
 </html>
