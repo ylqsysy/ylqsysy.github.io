@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Yannan Zhou | Remote Sensing and Geospatial Data Science</title>
-  <meta name="description" content="Academic homepage of Yannan Zhou (周彦男), M.Sc. candidate in Surveying Engineering at Jiangsu Ocean University. Research in satellite remote sensing, hyperspectral image classification, land cover change detection, and geospatial data science.">
+  <meta name="description" content="Academic homepage of Yannan Zhou (周彦男), M.Sc. candidate in Surveying Engineering at Jiangsu Ocean University. Research in hyperspectral image classification, multi-source remote sensing, and spatiotemporal forecasting.">
   <meta name="author" content="Yannan Zhou">
 
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=5">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.svg?v=5">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=6">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.svg?v=6">
   <link rel="manifest" href="site.webmanifest">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Yannan Zhou | Remote Sensing and Geospatial Data Science">
-  <meta property="og:description" content="M.Sc. candidate in Surveying Engineering at Jiangsu Ocean University. Research in satellite remote sensing, hyperspectral image classification, land cover change detection, and geospatial data science.">
+  <meta property="og:description" content="M.Sc. candidate in Surveying Engineering at Jiangsu Ocean University. Research in hyperspectral image classification, multi-source remote sensing, and spatiotemporal forecasting.">
   <meta property="og:image" content="images/avatar.jpg">
 
   <!-- Fonts & Academic Icons -->
@@ -31,25 +31,51 @@
           document.documentElement.setAttribute('data-theme', 'dark');
         }
       } catch (e) {}
+      if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-motion');
+      }
     })();
   </script>
 
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <!-- Subtle topographic contour backdrop with scroll parallax -->
+  <div class="topo-backdrop" aria-hidden="true">
+    <svg class="topo-svg" id="topo-svg" viewBox="0 0 1440 960" preserveAspectRatio="xMidYMid slice" fill="none">
+      <g stroke="currentColor" stroke-width="1">
+        <path d="M-80 180 C 180 110, 390 260, 650 175 C 910 90, 1140 230, 1520 140"/>
+        <path d="M-80 245 C 210 175, 420 330, 695 235 C 970 140, 1185 280, 1520 205"/>
+        <path d="M-80 320 C 245 250, 460 400, 740 305 C 1020 210, 1220 340, 1520 275"/>
+        <path d="M-80 410 C 260 350, 500 485, 795 390 C 1070 300, 1270 420, 1520 360"/>
+        <path d="M90 670 C 290 540, 510 560, 720 675 C 940 795, 1190 710, 1480 570"/>
+        <path d="M40 740 C 260 620, 495 635, 710 745 C 935 860, 1185 775, 1500 645"/>
+        <path d="M-20 820 C 220 710, 470 725, 695 825 C 920 925, 1175 850, 1520 730"/>
+        <ellipse cx="1090" cy="310" rx="230" ry="125" transform="rotate(-12 1090 310)"/>
+        <ellipse cx="1090" cy="310" rx="165" ry="86" transform="rotate(-12 1090 310)"/>
+        <ellipse cx="1090" cy="310" rx="102" ry="50" transform="rotate(-12 1090 310)"/>
+        <ellipse cx="320" cy="540" rx="190" ry="96" transform="rotate(9 320 540)"/>
+        <ellipse cx="320" cy="540" rx="125" ry="60" transform="rotate(9 320 540)"/>
+      </g>
+    </svg>
+  </div>
+
   <!-- Spectral calibration strip -->
   <div class="spectral-strip" aria-label="Multispectral wavelength reference">
-    <div class="spectral-bar" aria-hidden="true"></div>
+    <div class="spectral-bar-wrap" aria-hidden="true">
+      <div class="spectral-bar"></div>
+      <span class="spectral-needle" id="spectral-needle"></span>
+    </div>
     <div class="container spectral-ticks">
       <div class="spectral-band-list" role="list">
-        <button type="button" class="band-tick" data-band="Blue" data-wl="490 nm" role="listitem">490</button>
-        <button type="button" class="band-tick" data-band="Green" data-wl="560 nm" role="listitem">560</button>
-        <button type="button" class="band-tick" data-band="Red" data-wl="665 nm" role="listitem">665</button>
-        <button type="button" class="band-tick" data-band="Red Edge" data-wl="705 nm" role="listitem">705</button>
-        <button type="button" class="band-tick" data-band="NIR" data-wl="842 nm" role="listitem">842</button>
-        <button type="button" class="band-tick" data-band="SWIR-1" data-wl="1610 nm" role="listitem">1610 nm</button>
+        <button type="button" class="band-tick" data-band="Blue" data-wl="490 nm" data-pos="12%" role="listitem">490</button>
+        <button type="button" class="band-tick" data-band="Green" data-wl="560 nm" data-pos="24%" role="listitem">560</button>
+        <button type="button" class="band-tick" data-band="Red" data-wl="665 nm" data-pos="40%" role="listitem">665</button>
+        <button type="button" class="band-tick" data-band="Red Edge" data-wl="705 nm" data-pos="51%" role="listitem">705</button>
+        <button type="button" class="band-tick" data-band="NIR" data-wl="842 nm" data-pos="67%" role="listitem">842</button>
+        <button type="button" class="band-tick" data-band="SWIR-1" data-wl="1610 nm" data-pos="86%" role="listitem">1610 nm</button>
       </div>
       <span class="spectral-readout" id="spectral-readout" aria-live="polite">400 to 2500 nm reference</span>
     </div>
@@ -117,23 +143,23 @@
       <section class="hero-plate" aria-labelledby="hero-heading">
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Surveying Engineering · Jiangsu Ocean University</p>
-            <h1 id="hero-heading" class="hero-title">
+            <p class="eyebrow hero-enter" style="--d:0">Surveying Engineering · Jiangsu Ocean University</p>
+            <h1 id="hero-heading" class="hero-title hero-enter" style="--d:1">
               Yannan Zhou
               <span class="hero-title-zh" lang="zh-Hans">周彦男</span>
             </h1>
-            <p class="hero-lead">
-              I work on satellite remote sensing, hyperspectral image classification, and land cover change detection. My current research applies machine learning and state-space models to multi-source Earth observation data.
+            <p class="hero-lead hero-enter" style="--d:2">
+              I work on satellite remote sensing, hyperspectral image classification, and spatiotemporal forecasting. My research applies machine learning, state-space models, and attention architectures to Earth observation and geospatial time-series data.
             </p>
 
-            <dl class="dossier-strip">
+            <dl class="dossier-strip hero-enter" style="--d:3">
               <div class="dossier-cell">
                 <dt>Role</dt>
                 <dd>M.Sc. Candidate</dd>
               </div>
               <div class="dossier-cell">
                 <dt>Focus</dt>
-                <dd>Remote Sensing &amp; Geospatial Data</dd>
+                <dd>Remote Sensing &amp; Spatiotemporal ML</dd>
               </div>
               <div class="dossier-cell">
                 <dt>ORCID</dt>
@@ -141,7 +167,7 @@
               </div>
             </dl>
 
-            <div class="hero-links">
+            <div class="hero-links hero-enter" style="--d:4">
               <a href="mailto:yeluoqiushuang@outlook.com" class="btn-plate btn-primary">
                 <span>Email</span>
                 <span class="btn-arrow" aria-hidden="true">&#8599;</span>
@@ -157,26 +183,30 @@
             </div>
           </div>
 
-          <div class="hero-portrait-col">
-            <figure class="portrait-plate">
-              <span class="fiducial fiducial-tl" aria-hidden="true"></span>
-              <span class="fiducial fiducial-tr" aria-hidden="true"></span>
-              <span class="fiducial fiducial-bl" aria-hidden="true"></span>
-              <span class="fiducial fiducial-br" aria-hidden="true"></span>
-              <div class="portrait-frame">
-                <img src="images/avatar.jpg" alt="Portrait of Yannan Zhou" width="1200" height="1500" loading="eager">
-              </div>
-              <figcaption class="portrait-caption">
-                <span>PLATE 00 / PORTRAIT</span>
-                <span>YANNAN ZHOU</span>
-              </figcaption>
-            </figure>
+          <div class="hero-portrait-col hero-enter" style="--d:2">
+            <div class="portrait-stage" id="portrait-stage">
+              <div class="portrait-backplate" aria-hidden="true"></div>
+              <figure class="portrait-plate" id="portrait-plate">
+                <div class="portrait-sheen" aria-hidden="true"></div>
+                <span class="fiducial fiducial-tl" aria-hidden="true"></span>
+                <span class="fiducial fiducial-tr" aria-hidden="true"></span>
+                <span class="fiducial fiducial-bl" aria-hidden="true"></span>
+                <span class="fiducial fiducial-br" aria-hidden="true"></span>
+                <div class="portrait-frame">
+                  <img src="images/avatar.jpg" alt="Portrait of Yannan Zhou" width="1200" height="1500" loading="eager">
+                </div>
+                <figcaption class="portrait-caption">
+                  <span>PLATE 00 / PORTRAIT</span>
+                  <span>YANNAN ZHOU</span>
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Section 01: Profile -->
-      <section id="profile" class="band-section obs-section" data-plate="01">
+      <section id="profile" class="band-section obs-section reveal" data-plate="01">
         <div class="section-header">
           <span class="section-index">01</span>
           <h2 class="section-heading">Profile</h2>
@@ -188,7 +218,7 @@
               I am an M.Sc. candidate in Surveying Engineering at <a href="https://www.jou.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Jiangsu Ocean University</a>. Before starting graduate study, I received a B.Sc. in Data Science and Big Data Technology from <a href="https://www.zafu.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Zhejiang A&amp;F University</a> in 2024.
             </p>
             <p>
-              My research combines satellite remote sensing and geospatial data science for environmental monitoring. I focus on spectral-spatial representation learning for hyperspectral imagery and multi-temporal modeling of land cover change across multi-source Earth observation datasets.
+              My research connects satellite remote sensing, geospatial data science, and deep sequence modeling. I work on hyperspectral image classification, multi-source Earth observation for environmental monitoring and land cover change, and spatiotemporal forecasting for urban traffic flow.
             </p>
           </div>
 
@@ -206,14 +236,14 @@
       </section>
 
       <!-- Section 02: Research & Interactive Spectral-Spatial Schematic -->
-      <section id="research" class="band-section obs-section" data-plate="02">
+      <section id="research" class="band-section obs-section reveal" data-plate="02">
         <div class="section-header">
           <span class="section-index">02</span>
           <h2 class="section-heading">Research</h2>
         </div>
 
         <div class="research-grid">
-          <article class="research-card">
+          <article class="research-card reveal" style="--stagger:0">
             <div class="card-top">
               <span class="card-num">02.1</span>
               <span class="card-tag">Hyperspectral ML</span>
@@ -222,32 +252,32 @@
             <p>Center-targeted spectral-spatial representation learning and state-space sequence modeling for pixel-wise classification in high-dimensional imagery.</p>
           </article>
 
-          <article class="research-card">
+          <article class="research-card reveal" style="--stagger:1">
             <div class="card-top">
               <span class="card-num">02.2</span>
-              <span class="card-tag">Multi-Temporal</span>
-            </div>
-            <h3>Land Cover Change Detection</h3>
-            <p>Analyzing multi-temporal satellite observations to detect surface transitions and track land cover changes over time.</p>
-          </article>
-
-          <article class="research-card">
-            <div class="card-top">
-              <span class="card-num">02.3</span>
               <span class="card-tag">Earth Observation</span>
             </div>
-            <h3>Geospatial Data Science</h3>
-            <p>Combining multi-source Earth observation records with machine learning models for quantitative environmental monitoring.</p>
+            <h3>Multi-Source Remote Sensing &amp; Monitoring</h3>
+            <p>Integrating multi-source Earth observation data with geospatial modeling to monitor environmental conditions and track land cover change.</p>
+          </article>
+
+          <article class="research-card reveal" style="--stagger:2">
+            <div class="card-top">
+              <span class="card-num">02.3</span>
+              <span class="card-tag">Time Series</span>
+            </div>
+            <h3>Spatiotemporal Forecasting</h3>
+            <p>Deep sequence and attention-based architectures for urban traffic flow and geospatial time-series forecasting.</p>
           </article>
         </div>
 
         <!-- Interactive Spectral-Spatial Schematic Plate -->
-        <div class="schematic-plate">
+        <div class="schematic-plate reveal" style="--stagger:1">
           <div class="schematic-sidebar">
             <div class="schematic-meta">
               <span class="schematic-kicker">Interactive Plate · Spectral-Spatial Sampling</span>
               <h3 class="schematic-title">Center-Target Patch Inspector</h3>
-              <p class="schematic-desc">Move across the 7&#215;7 spatial grid on the left or switch surface classes below to inspect schematic reflectance signatures across visible, NIR, and SWIR bands.</p>
+              <p class="schematic-desc">Move across the 7&#215;7 layered patch stack or switch surface classes below to inspect schematic reflectance signatures across visible, NIR, and SWIR bands.</p>
             </div>
 
             <div class="sample-switcher" role="group" aria-label="Surface class presets">
@@ -273,14 +303,14 @@
           </div>
 
           <div class="schematic-canvas-wrap">
-            <canvas id="spectral-canvas" aria-label="Interactive schematic showing a 7 by 7 hyperspectral patch cube and corresponding reflectance curve"></canvas>
-            <p class="schematic-caption">Schematic: spectral-spatial patch and center-target reflectance profile (illustrative curves, 400 to 2500 nm).</p>
+            <canvas id="spectral-canvas" aria-label="Interactive schematic showing a 5-layer 7 by 7 hyperspectral patch stack and corresponding reflectance curve"></canvas>
+            <p class="schematic-caption">Schematic: layered spectral-spatial patch stack and center-target reflectance profile (illustrative curves, 400 to 2500 nm).</p>
           </div>
         </div>
       </section>
 
       <!-- Section 03: Publications -->
-      <section id="publications" class="band-section obs-section" data-plate="03">
+      <section id="publications" class="band-section obs-section reveal" data-plate="03">
         <div class="section-header">
           <span class="section-index">03</span>
           <h2 class="section-heading">Publications</h2>
@@ -305,20 +335,25 @@
                   <span class="tag-pill">Hyperspectral Classification</span>
                   <span class="tag-pill">State-Space Model</span>
                 </div>
-                <button type="button" class="bibtex-toggle" aria-expanded="false" aria-controls="bib-ctmamba">BibTeX</button>
+                <div class="pub-actions">
+                  <a href="https://github.com/ylqsysy/CTMamba" target="_blank" rel="noopener noreferrer" class="pub-action-link">Code &#8599;</a>
+                  <button type="button" class="bibtex-toggle" aria-expanded="false" aria-controls="bib-ctmamba">BibTeX</button>
+                </div>
               </div>
 
-              <div class="bibtex-panel" id="bib-ctmamba" hidden>
-                <div class="bibtex-bar">
-                  <span>BibTeX Record</span>
-                  <button type="button" class="copy-btn" data-copy-target="bib-code-ctmamba">Copy</button>
-                </div>
-                <pre><code id="bib-code-ctmamba">@article{zhou2026ctmamba,
+              <div class="bibtex-panel" id="bib-ctmamba" aria-hidden="true">
+                <div class="bibtex-inner">
+                  <div class="bibtex-bar">
+                    <span>BibTeX Record</span>
+                    <button type="button" class="copy-btn" data-copy-target="bib-code-ctmamba">Copy</button>
+                  </div>
+                  <pre><code id="bib-code-ctmamba">@article{zhou2026ctmamba,
   author  = {Zhou, Yannan and Yang, Yi},
   title   = {CTMamba: A Center-Targeted Mamba Network for Hyperspectral Image Classification},
   journal = {IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
   year    = {2026}
 }</code></pre>
+                </div>
               </div>
             </div>
           </article>
@@ -326,7 +361,7 @@
       </section>
 
       <!-- Section 04: Background -->
-      <section id="background" class="band-section obs-section" data-plate="04">
+      <section id="background" class="band-section obs-section reveal" data-plate="04">
         <div class="section-header">
           <span class="section-index">04</span>
           <h2 class="section-heading">Education</h2>
@@ -351,7 +386,7 @@
       </section>
 
       <!-- Section 05: Contact -->
-      <section id="contact" class="band-section obs-section" data-plate="05">
+      <section id="contact" class="band-section obs-section reveal" data-plate="05">
         <div class="section-header">
           <span class="section-index">05</span>
           <h2 class="section-heading">Contact</h2>
@@ -392,6 +427,6 @@
     </main>
   </div>
 
-  <script src="js/main.js?v=5"></script>
+  <script src="js/main.js?v=6"></script>
 </body>
 </html>
