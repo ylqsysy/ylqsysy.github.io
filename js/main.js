@@ -16,14 +16,10 @@
   document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
 
-    const masthead = document.getElementById('top');
     const themeToggle = document.getElementById('theme-toggle');
     const themeLabel = document.getElementById('theme-label');
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileDrawer = document.getElementById('mobile-drawer');
-    const navPills = document.querySelectorAll('.nav-pill');
-    const sections = document.querySelectorAll('.obs-section');
     const draftingArcs = document.getElementById('page-drafting-arcs');
     const yearEl = document.getElementById('yr');
     const backTop = document.getElementById('back-top');
@@ -32,15 +28,11 @@
       yearEl.textContent = String(new Date().getFullYear());
     }
 
-    // Masthead hairline + gentle drafting arcs parallax
+    // Subtle parallax for outer drafting arcs
     let scrollTicking = false;
     const updateScrollState = () => {
-      const y = window.scrollY;
-      if (masthead) {
-        masthead.classList.toggle('is-scrolled', y > 12);
-      }
       if (draftingArcs && !reducedMotion) {
-        draftingArcs.style.transform = `translate3d(0, ${(-y * 0.035).toFixed(1)}px, 0)`;
+        draftingArcs.style.transform = `translate3d(0, ${(-window.scrollY * 0.035).toFixed(1)}px, 0)`;
       }
       scrollTicking = false;
     };
@@ -56,22 +48,6 @@
       { passive: true }
     );
     updateScrollState();
-
-    // Mobile drawer toggle
-    if (menuToggle && mobileDrawer) {
-      menuToggle.addEventListener('click', () => {
-        const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', String(!isOpen));
-        mobileDrawer.hidden = isOpen;
-      });
-
-      mobileDrawer.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          menuToggle.setAttribute('aria-expanded', 'false');
-          mobileDrawer.hidden = true;
-        });
-      });
-    }
 
     // One-time scroll reveal
     const revealEls = document.querySelectorAll('.reveal');
@@ -91,21 +67,24 @@
       revealEls.forEach((el) => revealObserver.observe(el));
     }
 
-    // Scrollspy covering sections and footer #contact
-    if ('IntersectionObserver' in window && sections.length) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            const id = entry.target.id;
-            navPills.forEach((item) => {
-              item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
-            });
-          });
-        },
-        { rootMargin: '-25% 0px -52% 0px', threshold: 0 }
-      );
-      sections.forEach((sec) => observer.observe(sec));
+    // Subtle 3D tilt & sheen on portrait mount (fine pointer desktop only)
+    const portraitStage = document.getElementById('portrait-stage');
+    const portraitMount = document.getElementById('portrait-mount');
+    if (portraitStage && portraitMount && finePointer && !reducedMotion) {
+      portraitStage.addEventListener('mousemove', (event) => {
+        const rect = portraitStage.getBoundingClientRect();
+        const nx = (event.clientX - rect.left) / rect.width - 0.5;
+        const ny = (event.clientY - rect.top) / rect.height - 0.5;
+        portraitMount.style.setProperty('--rx', `${(-ny * 6.5).toFixed(2)}deg`);
+        portraitMount.style.setProperty('--ry', `${(nx * 6.5).toFixed(2)}deg`);
+        portraitMount.style.setProperty('--mx', `${((nx + 0.5) * 100).toFixed(1)}%`);
+        portraitMount.style.setProperty('--my', `${((ny + 0.5) * 100).toFixed(1)}%`);
+      });
+
+      portraitStage.addEventListener('mouseleave', () => {
+        portraitMount.style.setProperty('--rx', '0deg');
+        portraitMount.style.setProperty('--ry', '0deg');
+      });
     }
 
     // Back to top
@@ -179,7 +158,7 @@
       });
     });
 
-    // 1. Reading-safe periphery-weighted full-page Bayer mosaic backdrop
+    // Reading-safe periphery-weighted full-page Bayer mosaic backdrop
     const drawPageAmbientMosaic = () => {
       const canvas = document.getElementById('page-mosaic-bg');
       if (!canvas) return;
@@ -197,10 +176,9 @@
       ctx.clearRect(0, 0, cols, rows);
 
       const isDark = root.getAttribute('data-theme') === 'dark';
-      const stoneHex = isDark ? '#272623' : '#e2ddd1';
+      const stoneHex = isDark ? '#272623' : '#e0dbd0';
       const clayHex = isDark ? '#e08668' : '#d97757';
 
-      // Keep the entire container reading corridor (up to 1120px centered) completely clear
       const halfClearPx = Math.min(rect.width * 0.48, 560);
       const hasOuterMargins = rect.width >= 1220;
 
@@ -219,10 +197,9 @@
               clearance = Math.min(1, (distPx - halfClearPx) / (marginSpan * 0.55));
             }
           } else {
-            // On compact viewports, keep text completely clear and render only a quiet header-top corner mist
-            const headerFade = py < 96 ? Math.max(0, 1 - py / 96) : 0;
+            const headerFade = py < 78 ? Math.max(0, 1 - py / 78) : 0;
             const cornerWeight = Math.abs(nx - 0.5) * 2;
-            clearance = headerFade * Math.max(0, (cornerWeight - 0.4) / 0.6) * 0.55;
+            clearance = headerFade * Math.max(0, (cornerWeight - 0.45) / 0.55) * 0.5;
           }
 
           if (clearance <= 0.02) continue;
@@ -239,114 +216,7 @@
       }
     };
 
-    // 2. Editorial split-panel right-side Bayer mosaic (Earth orbit & terrain horizon)
-    const drawEditorialMosaic = () => {
-      const canvas = document.getElementById('editorial-mosaic');
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      if (!rect.width || !rect.height) return;
-
-      const tile = 3;
-      const cols = Math.ceil(rect.width / tile);
-      const rows = Math.ceil(rect.height / tile);
-      canvas.width = cols;
-      canvas.height = rows;
-
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      ctx.fillStyle = '#141413';
-      ctx.fillRect(0, 0, cols, rows);
-
-      for (let r = 0; r < rows; r += 1) {
-        const ny = r / rows;
-        for (let c = 0; c < cols; c += 1) {
-          const nx = c / cols;
-          const ridge = 0.55 - 0.22 * Math.sin(nx * 5.2 + 0.4) - 0.1 * Math.cos(nx * 11.5);
-          const orbitalArc = Math.exp(-Math.pow((ny - (0.38 - 0.2 * Math.sin(nx * Math.PI))) * 5.0, 2));
-          const terrainField = Math.max(0, Math.min(1, (ny - ridge + 0.32) * 1.55));
-          const total = Math.min(1, terrainField * 0.72 + orbitalArc * 0.58);
-
-          if (bayerHit(c, r, total)) {
-            if (orbitalArc > 0.72 || (terrainField > 0.76 && (c + r) % 2 === 0)) {
-              ctx.fillStyle = '#faf9f5';
-            } else if (total > 0.48) {
-              ctx.fillStyle = '#d97757';
-            } else {
-              ctx.fillStyle = '#33312d';
-            }
-            ctx.fillRect(c, r, 1, 1);
-          }
-        }
-      }
-    };
-
-    // 3. Compact Ex-Libris (76x76) & Publication Thumbnail (128x76) mini art plates
-    const drawMiniPlates = () => {
-      const ex = document.getElementById('exlibris-mosaic');
-      if (ex) {
-        const rect = ex.getBoundingClientRect();
-        if (rect.width && rect.height) {
-          const tile = 2;
-          const cols = Math.ceil(rect.width / tile);
-          const rows = Math.ceil(rect.height / tile);
-          ex.width = cols;
-          ex.height = rows;
-          const ctx = ex.getContext('2d');
-          if (ctx) {
-            ctx.fillStyle = '#141413';
-            ctx.fillRect(0, 0, cols, rows);
-            for (let r = 0; r < rows; r += 1) {
-              const ny = r / rows - 0.5;
-              for (let c = 0; c < cols; c += 1) {
-                const nx = c / cols - 0.5;
-                const rad = Math.hypot(nx, ny);
-                const ring = Math.exp(-Math.pow((rad - 0.3) * 8.5, 2));
-                const center = Math.max(0, 1 - rad * 5.2);
-                const val = Math.min(1, ring * 0.85 + center * 0.9);
-                if (bayerHit(c, r, val)) {
-                  ctx.fillStyle = center > 0.35 ? '#d97757' : '#faf9f5';
-                  ctx.fillRect(c, r, 1, 1);
-                }
-              }
-            }
-          }
-        }
-      }
-
-      const pub = document.getElementById('pub-mosaic');
-      if (pub) {
-        const rect = pub.getBoundingClientRect();
-        if (rect.width && rect.height) {
-          const tile = 2;
-          const cols = Math.ceil(rect.width / tile);
-          const rows = Math.ceil(rect.height / tile);
-          pub.width = cols;
-          pub.height = rows;
-          const ctx = pub.getContext('2d');
-          if (ctx) {
-            ctx.fillStyle = '#141413';
-            ctx.fillRect(0, 0, cols, rows);
-            for (let r = 0; r < rows; r += 1) {
-              const ny = r / rows - 0.5;
-              for (let c = 0; c < cols; c += 1) {
-                const nx = c / cols - 0.5;
-                const diamond = Math.abs(nx) * 1.45 + Math.abs(ny) * 1.35;
-                const field = Math.max(0, 1 - diamond * 1.35);
-                if (diamond < 0.14) {
-                  ctx.fillStyle = '#d97757';
-                  ctx.fillRect(c, r, 1, 1);
-                } else if (bayerHit(c, r, field * 0.92)) {
-                  ctx.fillStyle = diamond < 0.36 ? '#d97757' : '#faf9f5';
-                  ctx.fillRect(c, r, 1, 1);
-                }
-              }
-            }
-          }
-        }
-      }
-    };
-
-    // 4. Crisp top-edge Bayer horizon on the full-bleed charcoal footer
+    // Crisp top-edge Bayer horizon on the full-bleed charcoal footer
     const drawFooterMosaic = () => {
       const canvas = document.getElementById('footer-mosaic');
       if (!canvas) return;
@@ -387,8 +257,6 @@
 
     const renderAllCanvases = () => {
       drawPageAmbientMosaic();
-      drawEditorialMosaic();
-      drawMiniPlates();
       drawFooterMosaic();
     };
 
