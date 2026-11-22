@@ -16,7 +16,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const finePointer = window.matchMedia('(pointer: fine)').matches;
 
     const themeToggle = document.getElementById('theme-toggle');
     const themeLabel = document.getElementById('theme-label');
@@ -28,11 +27,11 @@
       yearEl.textContent = String(new Date().getFullYear());
     }
 
-    // Subtle parallax for outer drafting arcs
+    // Gentle parallax for whisper-light outer drafting arcs
     let scrollTicking = false;
     const updateScrollState = () => {
       if (draftingArcs && !reducedMotion) {
-        draftingArcs.style.transform = `translate3d(0, ${(-window.scrollY * 0.035).toFixed(1)}px, 0)`;
+        draftingArcs.style.transform = `translate3d(0, ${(-window.scrollY * 0.03).toFixed(1)}px, 0)`;
       }
       scrollTicking = false;
     };
@@ -65,26 +64,6 @@
         { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
       );
       revealEls.forEach((el) => revealObserver.observe(el));
-    }
-
-    // Subtle 3D tilt & sheen on portrait mount (fine pointer desktop only)
-    const portraitStage = document.getElementById('portrait-stage');
-    const portraitMount = document.getElementById('portrait-mount');
-    if (portraitStage && portraitMount && finePointer && !reducedMotion) {
-      portraitStage.addEventListener('mousemove', (event) => {
-        const rect = portraitStage.getBoundingClientRect();
-        const nx = (event.clientX - rect.left) / rect.width - 0.5;
-        const ny = (event.clientY - rect.top) / rect.height - 0.5;
-        portraitMount.style.setProperty('--rx', `${(-ny * 6.5).toFixed(2)}deg`);
-        portraitMount.style.setProperty('--ry', `${(nx * 6.5).toFixed(2)}deg`);
-        portraitMount.style.setProperty('--mx', `${((nx + 0.5) * 100).toFixed(1)}%`);
-        portraitMount.style.setProperty('--my', `${((ny + 0.5) * 100).toFixed(1)}%`);
-      });
-
-      portraitStage.addEventListener('mouseleave', () => {
-        portraitMount.style.setProperty('--rx', '0deg');
-        portraitMount.style.setProperty('--ry', '0deg');
-      });
     }
 
     // Back to top
@@ -176,7 +155,7 @@
       ctx.clearRect(0, 0, cols, rows);
 
       const isDark = root.getAttribute('data-theme') === 'dark';
-      const stoneHex = isDark ? '#272623' : '#e0dbd0';
+      const stoneHex = isDark ? '#272623' : '#dfdad0';
       const clayHex = isDark ? '#e08668' : '#d97757';
 
       const halfClearPx = Math.min(rect.width * 0.48, 560);
@@ -197,18 +176,18 @@
               clearance = Math.min(1, (distPx - halfClearPx) / (marginSpan * 0.55));
             }
           } else {
-            const headerFade = py < 78 ? Math.max(0, 1 - py / 78) : 0;
+            const headerFade = py < 74 ? Math.max(0, 1 - py / 74) : 0;
             const cornerWeight = Math.abs(nx - 0.5) * 2;
-            clearance = headerFade * Math.max(0, (cornerWeight - 0.45) / 0.55) * 0.5;
+            clearance = headerFade * Math.max(0, (cornerWeight - 0.48) / 0.52) * 0.45;
           }
 
           if (clearance <= 0.02) continue;
 
           const contourWave = 0.5 + 0.5 * Math.sin(nx * 9.0 + Math.cos(ny * 5.2) * 1.4);
-          const density = contourWave * clearance * 0.78;
+          const density = contourWave * clearance * 0.72;
 
           if (bayerHit(c, r, density)) {
-            const isSparseClay = contourWave > 0.86 && ((c * 7 + r * 11) % 19 === 0);
+            const isSparseClay = contourWave > 0.88 && ((c * 7 + r * 11) % 29 === 0);
             ctx.fillStyle = isSparseClay ? clayHex : stoneHex;
             ctx.fillRect(c, r, 1, 1);
           }

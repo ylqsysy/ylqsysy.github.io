@@ -17,17 +17,16 @@
   <meta property="og:description" content="M.Sc. candidate in Surveying Engineering at Jiangsu Ocean University. Research in hyperspectral image classification, multi-source remote sensing, and spatiotemporal forecasting.">
   <meta property="og:image" content="images/avatar.jpg">
 
-  <!-- Fonts & Academic Icons -->
+  <!-- Fonts (zero external icon library dependencies) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
   <script>
     (function () {
       try {
         var saved = localStorage.getItem('homepage-theme');
-        if (saved === 'dark') {
+        if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.setAttribute('data-theme', 'dark');
         }
       } catch (e) {}
@@ -37,22 +36,20 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=12">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Reading-safe full-page ambient background: periphery Bayer mosaic + faint drafting arcs -->
+  <!-- Reading-safe ambient backdrop: quiet outer-margin Bayer mosaic + whisper-light arcs -->
   <div class="page-ambient-bg" aria-hidden="true">
     <canvas id="page-mosaic-bg" class="page-mosaic-canvas"></canvas>
     <svg class="page-drafting-arcs" id="page-drafting-arcs" viewBox="0 0 1440 960" preserveAspectRatio="xMidYMid slice" fill="none">
       <g stroke="currentColor" stroke-width="1">
-        <circle cx="120" cy="240" r="220"/>
-        <circle cx="120" cy="240" r="340" stroke-dasharray="4 6"/>
-        <circle cx="1330" cy="680" r="260"/>
-        <circle cx="1330" cy="680" r="390" stroke-dasharray="4 6"/>
-        <line x1="68" y1="0" x2="68" y2="960"/>
-        <line x1="1372" y1="0" x2="1372" y2="960"/>
+        <circle cx="110" cy="240" r="220"/>
+        <circle cx="110" cy="240" r="340" stroke-dasharray="4 6"/>
+        <circle cx="1340" cy="680" r="260"/>
+        <circle cx="1340" cy="680" r="390" stroke-dasharray="4 6"/>
       </g>
     </svg>
   </div>
@@ -68,9 +65,9 @@
 
   <main id="main-content" class="site-main">
     <div class="container">
-      <!-- Non-sticky, clean header row (no navigation bar clutter) -->
+      <!-- Minimal non-sticky top row: logo mark + monogram + theme toggle -->
       <div class="hero-topbar" id="top">
-        <div class="brand-lockup">
+        <a href="#top" class="brand-lockup" aria-label="YZ Home">
           <svg class="brand-mark" width="26" height="26" viewBox="0 0 512 512" fill="none" aria-hidden="true">
             <path d="M 256 16 C 480 16 496 32 496 256 C 496 480 480 496 256 496 C 32 496 16 480 16 256 C 16 32 32 16 256 16 Z" fill="#141413"/>
             <path d="M 118 128 H 174 L 246 258 V 384 H 196 V 268 L 118 128 Z" fill="#FAF9F5"/>
@@ -84,9 +81,8 @@
             <rect x="318" y="294" width="32" height="32" fill="#FAF9F5"/>
             <rect x="284" y="336" width="34" height="34" fill="#D97757"/>
           </svg>
-          <span class="brand-name">Yannan Zhou</span>
-          <span class="brand-zh" lang="zh-Hans">周彦男</span>
-        </div>
+          <span class="brand-monogram">YZ</span>
+        </a>
 
         <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to Slate dark theme" title="Toggle theme">
           <span class="theme-dot" aria-hidden="true"></span>
@@ -120,8 +116,8 @@
                 <dd>Remote Sensing &amp; Spatiotemporal ML</dd>
               </div>
               <div class="dossier-item">
-                <dt>ORCID</dt>
-                <dd><a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="noopener noreferrer" class="mono-link">0009-0007-7879-4081</a></dd>
+                <dt>Prior</dt>
+                <dd>B.Sc., ZAFU (2024)</dd>
               </div>
             </dl>
 
@@ -135,132 +131,60 @@
                 <span aria-hidden="true">&#8599;</span>
               </a>
               <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="noopener noreferrer" class="btn-squircle">
-                <i class="ai ai-orcid" aria-hidden="true"></i>
+                <svg class="orcid-icon" width="15" height="15" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M128 0C57.3 0 0 57.3 0 128s57.3 128 128 128 128-57.3 128-128S198.7 0 128 0zM86.3 66.2c5.9 0 10.6 4.7 10.6 10.6s-4.7 10.6-10.6 10.6-10.6-4.7-10.6-10.6 4.7-10.6 10.6-10.6zM78.6 99.6h15.4v90.2H78.6V99.6zm38.5 0h35c33.3 0 47.9 23.8 47.9 45.1 0 23.2-18.1 45.1-47.7 45.1h-35.2V99.6zm15.4 13.9v62.4h18.4c26.2 0 32.2-19.9 32.2-31.2 0-18.4-11.7-31.2-32.8-31.2h-17.8z"/>
+                </svg>
                 <span>ORCID</span>
               </a>
             </div>
           </div>
 
-          <!-- Sculpted 3D Portrait Mount with Ornamental Surveying Border Frame -->
+          <!-- Calm, sharp single-layer sculpted squircle portrait card -->
           <div class="hero-portrait-col hero-enter" style="--d:2">
-            <div class="portrait-stage" id="portrait-stage">
-              <div class="portrait-plinth" aria-hidden="true"></div>
-              <figure class="portrait-mount" id="portrait-mount">
-                <div class="portrait-sheen" aria-hidden="true"></div>
-
-                <!-- Ornamental cartographic border framing the photo mat -->
-                <svg class="portrait-frame-ornament" viewBox="0 0 360 440" preserveAspectRatio="none" aria-hidden="true">
-                  <g stroke="currentColor" stroke-width="1" fill="none">
-                    <!-- Corner surveying reticles & degree arcs -->
-                    <path d="M 14 34 L 14 14 L 34 14"/>
-                    <path d="M 326 14 L 346 14 L 346 34"/>
-                    <path d="M 14 406 L 14 426 L 34 426"/>
-                    <path d="M 326 426 L 346 426 L 346 406"/>
-                    <path d="M 14 48 A 34 34 0 0 1 48 14" stroke-opacity="0.45"/>
-                    <path d="M 312 14 A 34 34 0 0 1 346 48" stroke-opacity="0.45"/>
-                    <line x1="60" y1="14" x2="300" y2="14" stroke-opacity="0.22" stroke-dasharray="2 6"/>
-                  </g>
+            <div class="portrait-mount">
+              <div class="portrait-frame">
+                <img src="images/avatar.jpg" alt="Portrait of Yannan Zhou" width="720" height="900" loading="eager" decoding="async" fetchpriority="high">
+                <svg class="portrait-squircle-stroke" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M 200,1 C 366,1 399,34 399,250 C 399,466 366,499 200,499 C 34,499 1,466 1,250 C 1,34 34,1 200,1 Z" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
                 </svg>
-
-                <div class="portrait-well">
-                  <div class="portrait-frame">
-                    <img src="images/avatar.jpg" alt="Portrait of Yannan Zhou" width="1200" height="1500" loading="eager">
-                    <svg class="portrait-squircle-stroke" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
-                      <path d="M 200,1 C 366,1 399,34 399,250 C 399,466 366,499 200,499 C 34,499 1,466 1,250 C 1,34 34,1 200,1 Z" fill="none" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
-                    </svg>
-                  </div>
-                </div>
-
-                <figcaption class="portrait-caption">
-                  <span>YANNAN ZHOU</span>
-                  <span class="portrait-dither-rule" aria-hidden="true"></span>
-                  <span>JOU</span>
-                </figcaption>
-              </figure>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <div class="main-flow">
-        <!-- Section 01: Profile -->
-        <section id="profile" class="editorial-section obs-section reveal">
-          <div class="section-rule-header">
-            <span class="section-label">01 / Profile</span>
-            <!-- Unique Ornament 1: Topographic Contour Crest & Scale Ticks -->
-            <svg class="section-ornament" viewBox="0 0 420 28" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
-              <g stroke="currentColor" fill="none" stroke-width="1">
-                <path d="M 40 22 C 95 22, 120 7, 175 7 C 230 7, 255 21, 315 21 C 355 21, 380 12, 416 12" stroke-opacity="0.45"/>
-                <path d="M 85 24 C 135 24, 155 12, 205 12 C 255 12, 280 23, 355 23" stroke-opacity="0.28" stroke-dasharray="3 3"/>
-                <line x1="20" y1="26" x2="416" y2="26" stroke-opacity="0.22"/>
-                <line x1="175" y1="22" x2="175" y2="26" stroke-opacity="0.5"/>
-                <line x1="255" y1="22" x2="255" y2="26" stroke-opacity="0.5"/>
-                <line x1="335" y1="22" x2="335" y2="26" stroke-opacity="0.5"/>
-              </g>
-              <circle cx="175" cy="7" r="2.2" fill="#D97757"/>
-            </svg>
-          </div>
-
-          <div class="profile-layout">
-            <div class="prose-col">
-              <p>
-                I am an M.Sc. candidate in Surveying Engineering at <a href="https://www.jou.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Jiangsu Ocean University</a>. Before starting graduate study, I received a B.Sc. in Data Science and Big Data Technology from <a href="https://www.zafu.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Zhejiang A&amp;F University</a> in 2024.
-              </p>
-              <p>
-                My research connects satellite remote sensing, geospatial data science, and deep sequence modeling. I work on hyperspectral image classification, multi-source Earth observation for environmental monitoring and land cover change, and spatiotemporal forecasting for urban traffic flow.
-              </p>
-            </div>
-
-            <dl class="profile-facts-card">
-              <div class="fact-row">
-                <dt>Department</dt>
-                <dd>Surveying Engineering</dd>
-              </div>
-              <div class="fact-row">
-                <dt>Institution</dt>
-                <dd>Jiangsu Ocean University</dd>
-              </div>
-              <div class="fact-row">
-                <dt>Undergraduate</dt>
-                <dd>Data Science and Big Data Technology, 2024</dd>
-              </div>
-            </dl>
-          </div>
-        </section>
-
-        <!-- Section 02: Research -->
+        <!-- Section 01: Research -->
         <section id="research" class="editorial-section obs-section reveal">
           <div class="section-rule-header">
-            <span class="section-label">02 / Research</span>
-            <!-- Unique Ornament 2: Stepped Low-Fi Bayer Pixel Matrix Gradient -->
-            <svg class="section-ornament" viewBox="0 0 420 28" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
+            <span class="section-label">01 / Research</span>
+            <!-- Narrowed Ornament 1: Stepped Low-Fi Bayer Pixel Matrix -->
+            <svg class="section-ornament" viewBox="0 0 260 24" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
               <g fill="currentColor" fill-opacity="0.34">
-                <rect x="210" y="10" width="3" height="3"/>
-                <rect x="234" y="16" width="3" height="3"/>
-                <rect x="254" y="8" width="3" height="3"/>
-                <rect x="274" y="14" width="3" height="3"/>
-                <rect x="286" y="6" width="3" height="3"/>
-                <rect x="298" y="18" width="3" height="3"/>
-                <rect x="312" y="10" width="3" height="3"/>
-                <rect x="324" y="14" width="3" height="3"/>
-                <rect x="336" y="6" width="3" height="3"/>
-                <rect x="348" y="18" width="3" height="3"/>
-                <rect x="360" y="10" width="3" height="3"/>
-                <rect x="372" y="14" width="3" height="3"/>
-                <rect x="384" y="6" width="3" height="3"/>
-                <rect x="396" y="18" width="3" height="3"/>
-                <rect x="408" y="10" width="3" height="3"/>
-                <rect x="366" y="22" width="3" height="3"/>
-                <rect x="390" y="22" width="3" height="3"/>
-                <rect x="402" y="4" width="3" height="3"/>
+                <rect x="64" y="10" width="3" height="3"/>
+                <rect x="88" y="14" width="3" height="3"/>
+                <rect x="110" y="6" width="3" height="3"/>
+                <rect x="128" y="12" width="3" height="3"/>
+                <rect x="142" y="5" width="3" height="3"/>
+                <rect x="156" y="16" width="3" height="3"/>
+                <rect x="170" y="8" width="3" height="3"/>
+                <rect x="184" y="13" width="3" height="3"/>
+                <rect x="196" y="5" width="3" height="3"/>
+                <rect x="208" y="16" width="3" height="3"/>
+                <rect x="220" y="9" width="3" height="3"/>
+                <rect x="232" y="14" width="3" height="3"/>
+                <rect x="244" y="6" width="3" height="3"/>
+                <rect x="254" y="12" width="3" height="3"/>
+                <rect x="226" y="19" width="3" height="3"/>
+                <rect x="250" y="19" width="3" height="3"/>
               </g>
-              <rect x="348" y="10" width="3" height="3" fill="#D97757"/>
-              <rect x="384" y="14" width="3" height="3" fill="#D97757"/>
+              <rect x="196" y="12" width="3" height="3" fill="#D97757"/>
+              <rect x="238" y="9" width="3" height="3" fill="#D97757"/>
             </svg>
           </div>
 
           <div class="research-grid">
-            <!-- Card 1: Isometric Crystal Lattice Corner Watermark -->
+            <!-- Card 1: Isometric Lattice Watermark -->
             <article class="research-card reveal" style="--stagger:0">
               <svg class="card-etching" viewBox="0 0 120 120" fill="none" aria-hidden="true">
                 <g stroke="currentColor" stroke-width="1">
@@ -284,7 +208,7 @@
               </div>
             </article>
 
-            <!-- Card 2: Concentric Orbital Swath Arcs Watermark -->
+            <!-- Card 2: Concentric Orbital Arcs Watermark -->
             <article class="research-card reveal" style="--stagger:1">
               <svg class="card-etching" viewBox="0 0 120 120" fill="none" aria-hidden="true">
                 <g stroke="currentColor" stroke-width="1">
@@ -336,21 +260,21 @@
           </div>
         </section>
 
-        <!-- Section 03: Publications -->
+        <!-- Section 02: Publications -->
         <section id="publications" class="editorial-section obs-section reveal">
           <div class="section-rule-header">
-            <span class="section-label">03 / Publications</span>
-            <!-- Unique Ornament 3: Archival Folio Notches & Parallel Binding Rule -->
-            <svg class="section-ornament" viewBox="0 0 420 28" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
+            <span class="section-label">02 / Publications</span>
+            <!-- Narrowed Ornament 2: Folio Notches & Parallel Binding Baseline -->
+            <svg class="section-ornament" viewBox="0 0 260 24" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
               <g stroke="currentColor" stroke-width="1">
-                <line x1="180" y1="12" x2="416" y2="12" stroke-opacity="0.28"/>
-                <line x1="240" y1="17" x2="416" y2="17" stroke-opacity="0.45"/>
-                <line x1="300" y1="7" x2="300" y2="21" stroke-opacity="0.45"/>
-                <line x1="350" y1="9" x2="350" y2="19" stroke-opacity="0.45"/>
-                <line x1="382" y1="7" x2="382" y2="21" stroke-opacity="0.45"/>
-                <line x1="414" y1="9" x2="414" y2="19" stroke-opacity="0.45"/>
+                <line x1="60" y1="10" x2="258" y2="10" stroke-opacity="0.28"/>
+                <line x1="115" y1="15" x2="258" y2="15" stroke-opacity="0.45"/>
+                <line x1="155" y1="5" x2="155" y2="19" stroke-opacity="0.45"/>
+                <line x1="196" y1="7" x2="196" y2="17" stroke-opacity="0.45"/>
+                <line x1="226" y1="5" x2="226" y2="19" stroke-opacity="0.45"/>
+                <line x1="256" y1="7" x2="256" y2="17" stroke-opacity="0.45"/>
               </g>
-              <rect x="323" y="10" width="5" height="5" fill="#D97757"/>
+              <rect x="174" y="8" width="4.5" height="4.5" fill="#D97757"/>
             </svg>
           </div>
 
@@ -397,41 +321,46 @@
           </div>
         </section>
 
-        <!-- Section 04: Education -->
+        <!-- Section 03: Background & Education (Consolidated, Zero Redundancy) -->
         <section id="background" class="editorial-section obs-section reveal last-section">
           <div class="section-rule-header">
-            <span class="section-label">04 / Education</span>
-            <!-- Unique Ornament 4: Classical Colonnade Vertical Rhythm -->
-            <svg class="section-ornament" viewBox="0 0 420 28" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
-              <g stroke="currentColor" stroke-width="1">
-                <line x1="250" y1="6" x2="250" y2="22" stroke-opacity="0.16"/>
-                <line x1="268" y1="6" x2="268" y2="22" stroke-opacity="0.22"/>
-                <line x1="286" y1="6" x2="286" y2="22" stroke-opacity="0.28"/>
-                <line x1="304" y1="6" x2="304" y2="22" stroke-opacity="0.34"/>
-                <line x1="322" y1="6" x2="322" y2="22" stroke-opacity="0.4"/>
-                <line x1="340" y1="6" x2="340" y2="22" stroke-opacity="0.46"/>
-                <line x1="358" y1="6" x2="358" y2="22" stroke-opacity="0.52"/>
-                <line x1="376" y1="6" x2="376" y2="22" stroke-opacity="0.58"/>
-                <line x1="394" y1="6" x2="394" y2="22" stroke-opacity="0.64"/>
-                <line x1="412" y1="6" x2="412" y2="22" stroke-opacity="0.7"/>
-                <line x1="250" y1="22" x2="416" y2="22" stroke-opacity="0.25"/>
+            <span class="section-label">03 / Background</span>
+            <!-- Narrowed Ornament 3: Topographic Contour Crest -->
+            <svg class="section-ornament" viewBox="0 0 260 24" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
+              <g stroke="currentColor" fill="none" stroke-width="1">
+                <path d="M 16 19 C 56 19, 76 6, 118 6 C 160 6, 180 18, 218 18 C 236 18, 246 11, 258 11" stroke-opacity="0.45"/>
+                <path d="M 48 21 C 84 21, 98 11, 138 11 C 178 11, 196 20, 248 20" stroke-opacity="0.28" stroke-dasharray="3 3"/>
+                <line x1="16" y1="22" x2="258" y2="22" stroke-opacity="0.22"/>
               </g>
+              <circle cx="118" cy="6" r="2.2" fill="#D97757"/>
             </svg>
           </div>
 
-          <div class="edu-card">
-            <div class="edu-row">
-              <div class="edu-degree">M.Sc. Candidate</div>
-              <div class="edu-field">Surveying Engineering</div>
-              <div class="edu-inst">
-                <a href="https://www.jou.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Jiangsu Ocean University</a>
-              </div>
+          <div class="background-layout">
+            <div class="prose-col">
+              <p>
+                My academic training combines data science and surveying engineering. Building on an undergraduate degree in data science and big data technology, my graduate work applies sequence and representation learning to satellite Earth observation and geospatial systems.
+              </p>
             </div>
-            <div class="edu-row">
-              <div class="edu-degree">B.Sc., 2024</div>
-              <div class="edu-field">Data Science and Big Data Technology</div>
-              <div class="edu-inst">
-                <a href="https://www.zafu.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Zhejiang A&amp;F University</a>
+
+            <div class="edu-card">
+              <div class="edu-row">
+                <div class="edu-top">
+                  <span class="edu-degree">M.Sc. Candidate</span>
+                  <span class="edu-inst">
+                    <a href="https://www.jou.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Jiangsu Ocean University</a>
+                  </span>
+                </div>
+                <div class="edu-field">Surveying Engineering</div>
+              </div>
+              <div class="edu-row">
+                <div class="edu-top">
+                  <span class="edu-degree">B.Sc., 2024</span>
+                  <span class="edu-inst">
+                    <a href="https://www.zafu.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Zhejiang A&amp;F University</a>
+                  </span>
+                </div>
+                <div class="edu-field">Data Science and Big Data Technology</div>
               </div>
             </div>
           </div>
@@ -501,6 +430,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=11"></script>
+  <script src="js/main.js?v=12"></script>
 </body>
 </html>
