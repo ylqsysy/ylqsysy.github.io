@@ -73,7 +73,7 @@
       });
     }
 
-    // Smooth BibTeX panel toggle
+    // Smooth BibTeX panel toggle with native inert accessibility
     document.querySelectorAll('.bibtex-toggle').forEach((btn) => {
       btn.addEventListener('click', () => {
         const targetId = btn.getAttribute('aria-controls');
@@ -83,6 +83,7 @@
         const nextExpanded = !expanded;
         btn.setAttribute('aria-expanded', String(nextExpanded));
         panel.setAttribute('aria-hidden', String(!nextExpanded));
+        panel.inert = !nextExpanded;
         panel.classList.toggle('is-open', nextExpanded);
       });
     });
@@ -245,7 +246,7 @@
       resizeTimer = setTimeout(renderAllCanvases, 140);
     });
 
-    // Theme toggle
+    // Theme toggle + system color-scheme fallback sync
     const syncThemeUi = () => {
       const isDark = root.getAttribute('data-theme') === 'dark';
       if (themeLabel) {
@@ -253,8 +254,25 @@
       }
       if (themeToggle) {
         themeToggle.setAttribute('aria-label', isDark ? 'Switch to Ivory light theme' : 'Switch to Slate dark theme');
+        themeToggle.setAttribute('aria-pressed', String(isDark));
       }
     };
+
+    const colorSchemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    if (colorSchemeQuery && colorSchemeQuery.addEventListener) {
+      colorSchemeQuery.addEventListener('change', (e) => {
+        let saved = null;
+        try { saved = localStorage.getItem('homepage-theme'); } catch (err) {}
+        if (saved) return;
+        if (e.matches) {
+          root.setAttribute('data-theme', 'dark');
+        } else {
+          root.removeAttribute('data-theme');
+        }
+        syncThemeUi();
+        drawPageAmbientMosaic();
+      });
+    }
 
     if (themeToggle) {
       themeToggle.addEventListener('click', () => {

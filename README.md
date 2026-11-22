@@ -13,9 +13,10 @@ academic-homepage/
 ├── js/
 │   └── main.js
 └── images/
-    ├── apple-touch-icon.svg
+    ├── apple-touch-icon.png
     ├── avatar.jpg
     ├── avatar.png
+    ├── avatar.webp
     └── favicon.svg
 ```
 
