@@ -1,8 +1,19 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- Top Face -->
-  <path d="M 256 32 L 480 160 L 256 288 L 32 160 Z" fill="#677c6a"/>
-  <!-- Left Face -->
-  <path d="M 32 160 L 256 288 L 256 480 L 32 352 Z" fill="#465c49"/>
-  <!-- Right Face -->
-  <path d="M 480 160 L 256 288 L 256 480 L 480 352 Z" fill="#2d3b2f"/>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="16" y="16" width="480" height="480" rx="88" fill="#163B30"/>
+  <rect x="36" y="36" width="440" height="440" rx="70" stroke="#2E6353" stroke-width="6"/>
+
+  <!-- Outer hyperspectral prism frame -->
+  <path d="M256 96L416 188V324L256 416L96 324V188L256 96Z" stroke="#7FC4AE" stroke-width="14" stroke-linejoin="round"/>
+  <!-- Inner spectral plane -->
+  <path d="M256 154L356 212V300L256 358L156 300V212L256 154Z" stroke="#F4F1EA" stroke-width="14" stroke-linejoin="round"/>
+
+  <!-- Geodetic reticle crosshairs -->
+  <line x1="256" y1="74" x2="256" y2="178" stroke="#F4F1EA" stroke-width="14" stroke-linecap="round"/>
+  <line x1="256" y1="334" x2="256" y2="438" stroke="#F4F1EA" stroke-width="14" stroke-linecap="round"/>
+  <line x1="74" y1="256" x2="178" y2="256" stroke="#F4F1EA" stroke-width="14" stroke-linecap="round"/>
+  <line x1="334" y1="256" x2="438" y2="256" stroke="#F4F1EA" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Center target pixel -->
+  <circle cx="256" cy="256" r="46" stroke="#F4F1EA" stroke-width="12"/>
+  <circle cx="256" cy="256" r="24" fill="#D4653B"/>
 </svg>

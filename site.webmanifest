@@ -1,11 +1,11 @@
 {
-  "name": "Yannan Zhou — Academic Homepage",
+  "name": "Yannan Zhou",
   "short_name": "Yannan Zhou",
-  "description": "Remote Sensing & Geospatial Data Science Researcher",
+  "description": "Academic homepage of Yannan Zhou, M.Sc. candidate in Surveying Engineering.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f8f8f7",
-  "theme_color": "#1a365d",
+  "background_color": "#f4f1ea",
+  "theme_color": "#1b4d3e",
   "orientation": "any",
   "icons": [
     {

@@ -3,92 +3,395 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Yannan Zhou — Remote Sensing & Geospatial Data Science</title>
-  <meta name="description" content="Yannan Zhou (周彦男) – M.Sc. Candidate at Jiangsu Ocean University. Research in satellite remote sensing, land cover change detection, and geospatial data science.">
+  <title>Yannan Zhou | Remote Sensing and Geospatial Data Science</title>
+  <meta name="description" content="Academic homepage of Yannan Zhou (周彦男), M.Sc. candidate in Surveying Engineering at Jiangsu Ocean University. Research in satellite remote sensing, hyperspectral image classification, land cover change detection, and geospatial data science.">
   <meta name="author" content="Yannan Zhou">
-  
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=4">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.svg?v=4">
+
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=5">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.svg?v=5">
   <link rel="manifest" href="site.webmanifest">
-  
+
   <!-- Open Graph -->
-  <meta property="og:title" content="Yannan Zhou — Remote Sensing & Geospatial Data Science">
-  <meta property="og:description" content="M.Sc. Candidate at Jiangsu Ocean University. Research in satellite remote sensing, land cover change detection, and geospatial data science.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Yannan Zhou | Remote Sensing and Geospatial Data Science">
+  <meta property="og:description" content="M.Sc. candidate in Surveying Engineering at Jiangsu Ocean University. Research in satellite remote sensing, hyperspectral image classification, land cover change detection, and geospatial data science.">
   <meta property="og:image" content="images/avatar.jpg">
-  
-  <!-- Fonts & Icons -->
+
+  <!-- Fonts & Academic Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  
-  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('homepage-theme');
+        if (saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
-<body class="theme-organic">
-  <div class="layout">
-    <header class="left-col">
-      <div class="sticky-inner">
-        <div>
-          <h1 class="title">Yannan Zhou</h1>
-          <h2 class="subtitle">Geospatial Data Science & Remote Sensing</h2>
-          <p class="bio">M.Sc. Candidate at Jiangsu Ocean University. Researching satellite remote sensing, land cover change detection, and geospatial data science.</p>
-        </div>
-        
-        <nav class="nav">
-          <a href="#about" class="nav-link active"><span class="nav-indicator"></span><span class="nav-text">About</span></a>
-          <a href="#publications" class="nav-link"><span class="nav-indicator"></span><span class="nav-text">Publications</span></a>
-          <a href="#contact" class="nav-link"><span class="nav-indicator"></span><span class="nav-text">Contact</span></a>
-        </nav>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-        <div class="socials">
-          <a href="https://github.com/ylqsysy" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="mailto:yeluoqiushuang@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" aria-label="ORCID"><i class="ai ai-orcid"></i></a>
-        </div>
+  <!-- Spectral calibration strip -->
+  <div class="spectral-strip" aria-label="Multispectral wavelength reference">
+    <div class="spectral-bar" aria-hidden="true"></div>
+    <div class="container spectral-ticks">
+      <div class="spectral-band-list" role="list">
+        <button type="button" class="band-tick" data-band="Blue" data-wl="490 nm" role="listitem">490</button>
+        <button type="button" class="band-tick" data-band="Green" data-wl="560 nm" role="listitem">560</button>
+        <button type="button" class="band-tick" data-band="Red" data-wl="665 nm" role="listitem">665</button>
+        <button type="button" class="band-tick" data-band="Red Edge" data-wl="705 nm" role="listitem">705</button>
+        <button type="button" class="band-tick" data-band="NIR" data-wl="842 nm" role="listitem">842</button>
+        <button type="button" class="band-tick" data-band="SWIR-1" data-wl="1610 nm" role="listitem">1610 nm</button>
       </div>
-    </header>
+      <span class="spectral-readout" id="spectral-readout" aria-live="polite">400 to 2500 nm reference</span>
+    </div>
+  </div>
 
-    <main class="right-col">
-      <section id="about" class="sec">
-        <div class="hero-image-wrap">
-          <img src="images/avatar.jpg" alt="Yannan Zhou" class="hero-image">
+  <!-- Masthead -->
+  <header class="masthead" id="top">
+    <div class="container masthead-inner">
+      <a href="#top" class="brand" aria-label="Yannan Zhou home">
+        <svg class="brand-mark" width="24" height="24" viewBox="0 0 512 512" fill="none" aria-hidden="true">
+          <rect x="16" y="16" width="480" height="480" rx="88" fill="#163B30"/>
+          <path d="M256 96L416 188V324L256 416L96 324V188L256 96Z" stroke="#7FC4AE" stroke-width="18" stroke-linejoin="round"/>
+          <path d="M256 154L356 212V300L256 358L156 300V212L256 154Z" stroke="#F4F1EA" stroke-width="18" stroke-linejoin="round"/>
+          <circle cx="256" cy="256" r="28" fill="#D4653B"/>
+        </svg>
+        <span class="brand-name">Yannan Zhou</span>
+        <span class="brand-zh" lang="zh-Hans">周彦男</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#profile" class="nav-item active" data-section="profile"><span class="nav-num">01</span>Profile</a>
+        <a href="#research" class="nav-item" data-section="research"><span class="nav-num">02</span>Research</a>
+        <a href="#publications" class="nav-item" data-section="publications"><span class="nav-num">03</span>Publications</a>
+        <a href="#background" class="nav-item" data-section="background"><span class="nav-num">04</span>Background</a>
+        <a href="#contact" class="nav-item" data-section="contact"><span class="nav-num">05</span>Contact</a>
+      </nav>
+
+      <div class="masthead-actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme" title="Toggle color theme">
+          <span class="theme-dot" aria-hidden="true"></span>
+          <span class="theme-label" id="theme-label">Night Pass</span>
+        </button>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer" hidden>
+      <nav class="mobile-nav" aria-label="Mobile navigation">
+        <a href="#profile" class="mobile-nav-link"><span class="nav-num">01</span>Profile</a>
+        <a href="#research" class="mobile-nav-link"><span class="nav-num">02</span>Research</a>
+        <a href="#publications" class="mobile-nav-link"><span class="nav-num">03</span>Publications</a>
+        <a href="#background" class="mobile-nav-link"><span class="nav-num">04</span>Background</a>
+        <a href="#contact" class="mobile-nav-link"><span class="nav-num">05</span>Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-frame">
+    <!-- Desktop margin rail -->
+    <aside class="margin-rail" aria-hidden="true">
+      <div class="rail-sticky">
+        <span class="rail-plate" id="rail-plate">01</span>
+        <div class="rail-track">
+          <div class="rail-fill" id="rail-fill"></div>
         </div>
-        <div class="prose">
-          <p>I'm a Master's student in Surveying Engineering at <a href="https://www.jou.edu.cn" target="_blank" class="text-link">Jiangsu Ocean University</a>. Before this, I studied Data Science and Big Data Technology at <a href="https://www.zafu.edu.cn" target="_blank" class="text-link">Zhejiang A&amp;F University</a> (B.Sc., 2024).</p>
-          <p>My work sits between remote sensing and data science. I focus on satellite-based environmental monitoring and land cover change detection—combining multi-source Earth observation data with machine learning to track how landscapes shift over time.</p>
+        <span class="rail-code">OBS</span>
+      </div>
+    </aside>
+
+    <main id="main-content" class="container main-shell">
+      <!-- Hero Plate -->
+      <section class="hero-plate" aria-labelledby="hero-heading">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Surveying Engineering · Jiangsu Ocean University</p>
+            <h1 id="hero-heading" class="hero-title">
+              Yannan Zhou
+              <span class="hero-title-zh" lang="zh-Hans">周彦男</span>
+            </h1>
+            <p class="hero-lead">
+              I work on satellite remote sensing, hyperspectral image classification, and land cover change detection. My current research applies machine learning and state-space models to multi-source Earth observation data.
+            </p>
+
+            <dl class="dossier-strip">
+              <div class="dossier-cell">
+                <dt>Role</dt>
+                <dd>M.Sc. Candidate</dd>
+              </div>
+              <div class="dossier-cell">
+                <dt>Focus</dt>
+                <dd>Remote Sensing &amp; Geospatial Data</dd>
+              </div>
+              <div class="dossier-cell">
+                <dt>ORCID</dt>
+                <dd><a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="noopener noreferrer" class="mono-link">0009-0007-7879-4081</a></dd>
+              </div>
+            </dl>
+
+            <div class="hero-links">
+              <a href="mailto:yeluoqiushuang@outlook.com" class="btn-plate btn-primary">
+                <span>Email</span>
+                <span class="btn-arrow" aria-hidden="true">&#8599;</span>
+              </a>
+              <a href="https://github.com/ylqsysy" target="_blank" rel="noopener noreferrer" class="btn-plate">
+                <span>GitHub</span>
+                <span class="btn-arrow" aria-hidden="true">&#8599;</span>
+              </a>
+              <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="noopener noreferrer" class="btn-plate">
+                <i class="ai ai-orcid" aria-hidden="true"></i>
+                <span>ORCID</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-portrait-col">
+            <figure class="portrait-plate">
+              <span class="fiducial fiducial-tl" aria-hidden="true"></span>
+              <span class="fiducial fiducial-tr" aria-hidden="true"></span>
+              <span class="fiducial fiducial-bl" aria-hidden="true"></span>
+              <span class="fiducial fiducial-br" aria-hidden="true"></span>
+              <div class="portrait-frame">
+                <img src="images/avatar.jpg" alt="Portrait of Yannan Zhou" width="1200" height="1500" loading="eager">
+              </div>
+              <figcaption class="portrait-caption">
+                <span>PLATE 00 / PORTRAIT</span>
+                <span>YANNAN ZHOU</span>
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
-      <section id="publications" class="sec">
-        <h2 class="section-title">Publications</h2>
-        <div class="pub-list">
-          <article class="pub-item">
-            <p class="pub-citation">Yannan Zhou, Yi Yang. CTMamba: A Center-Targeted Mamba Network for Hyperspectral Image Classification. <em>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</em>, 2026.</p>
+      <!-- Section 01: Profile -->
+      <section id="profile" class="band-section obs-section" data-plate="01">
+        <div class="section-header">
+          <span class="section-index">01</span>
+          <h2 class="section-heading">Profile</h2>
+        </div>
+
+        <div class="profile-layout">
+          <div class="prose-col">
+            <p>
+              I am an M.Sc. candidate in Surveying Engineering at <a href="https://www.jou.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Jiangsu Ocean University</a>. Before starting graduate study, I received a B.Sc. in Data Science and Big Data Technology from <a href="https://www.zafu.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Zhejiang A&amp;F University</a> in 2024.
+            </p>
+            <p>
+              My research combines satellite remote sensing and geospatial data science for environmental monitoring. I focus on spectral-spatial representation learning for hyperspectral imagery and multi-temporal modeling of land cover change across multi-source Earth observation datasets.
+            </p>
+          </div>
+
+          <div class="profile-aside">
+            <div class="aside-card">
+              <span class="aside-label">Discipline</span>
+              <p class="aside-value">Surveying Engineering &amp; Earth Observation</p>
+            </div>
+            <div class="aside-card">
+              <span class="aside-label">Prior Training</span>
+              <p class="aside-value">Data Science and Big Data Technology</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 02: Research & Interactive Spectral-Spatial Schematic -->
+      <section id="research" class="band-section obs-section" data-plate="02">
+        <div class="section-header">
+          <span class="section-index">02</span>
+          <h2 class="section-heading">Research</h2>
+        </div>
+
+        <div class="research-grid">
+          <article class="research-card">
+            <div class="card-top">
+              <span class="card-num">02.1</span>
+              <span class="card-tag">Hyperspectral ML</span>
+            </div>
+            <h3>Hyperspectral Image Classification</h3>
+            <p>Center-targeted spectral-spatial representation learning and state-space sequence modeling for pixel-wise classification in high-dimensional imagery.</p>
+          </article>
+
+          <article class="research-card">
+            <div class="card-top">
+              <span class="card-num">02.2</span>
+              <span class="card-tag">Multi-Temporal</span>
+            </div>
+            <h3>Land Cover Change Detection</h3>
+            <p>Analyzing multi-temporal satellite observations to detect surface transitions and track land cover changes over time.</p>
+          </article>
+
+          <article class="research-card">
+            <div class="card-top">
+              <span class="card-num">02.3</span>
+              <span class="card-tag">Earth Observation</span>
+            </div>
+            <h3>Geospatial Data Science</h3>
+            <p>Combining multi-source Earth observation records with machine learning models for quantitative environmental monitoring.</p>
+          </article>
+        </div>
+
+        <!-- Interactive Spectral-Spatial Schematic Plate -->
+        <div class="schematic-plate">
+          <div class="schematic-sidebar">
+            <div class="schematic-meta">
+              <span class="schematic-kicker">Interactive Plate · Spectral-Spatial Sampling</span>
+              <h3 class="schematic-title">Center-Target Patch Inspector</h3>
+              <p class="schematic-desc">Move across the 7&#215;7 spatial grid on the left or switch surface classes below to inspect schematic reflectance signatures across visible, NIR, and SWIR bands.</p>
+            </div>
+
+            <div class="sample-switcher" role="group" aria-label="Surface class presets">
+              <button type="button" class="sample-btn active" data-sample="canopy">Canopy</button>
+              <button type="button" class="sample-btn" data-sample="soil">Soil</button>
+              <button type="button" class="sample-btn" data-sample="water">Water</button>
+            </div>
+
+            <dl class="telemetry-grid">
+              <div>
+                <dt>Target Cell</dt>
+                <dd id="pixel-coord">(3, 3) · Center</dd>
+              </div>
+              <div>
+                <dt>Surface Class</dt>
+                <dd id="sample-name">Vegetation Canopy</dd>
+              </div>
+              <div>
+                <dt>Peak Band</dt>
+                <dd id="peak-band">842 nm (NIR)</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="schematic-canvas-wrap">
+            <canvas id="spectral-canvas" aria-label="Interactive schematic showing a 7 by 7 hyperspectral patch cube and corresponding reflectance curve"></canvas>
+            <p class="schematic-caption">Schematic: spectral-spatial patch and center-target reflectance profile (illustrative curves, 400 to 2500 nm).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 03: Publications -->
+      <section id="publications" class="band-section obs-section" data-plate="03">
+        <div class="section-header">
+          <span class="section-index">03</span>
+          <h2 class="section-heading">Publications</h2>
+        </div>
+
+        <div class="pub-ledger">
+          <article class="pub-entry">
+            <div class="pub-meta">
+              <span class="pub-index">[01]</span>
+              <span class="pub-year">2026</span>
+              <span class="pub-venue-short">IEEE J-STARS</span>
+            </div>
+
+            <div class="pub-body">
+              <h3 class="pub-title">CTMamba: A Center-Targeted Mamba Network for Hyperspectral Image Classification</h3>
+              <p class="pub-authors"><strong>Yannan Zhou</strong>, Yi Yang</p>
+              <p class="pub-venue"><em>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</em>, 2026.</p>
+
+              <div class="pub-controls">
+                <div class="pub-tags">
+                  <span class="tag-pill">Journal Article</span>
+                  <span class="tag-pill">Hyperspectral Classification</span>
+                  <span class="tag-pill">State-Space Model</span>
+                </div>
+                <button type="button" class="bibtex-toggle" aria-expanded="false" aria-controls="bib-ctmamba">BibTeX</button>
+              </div>
+
+              <div class="bibtex-panel" id="bib-ctmamba" hidden>
+                <div class="bibtex-bar">
+                  <span>BibTeX Record</span>
+                  <button type="button" class="copy-btn" data-copy-target="bib-code-ctmamba">Copy</button>
+                </div>
+                <pre><code id="bib-code-ctmamba">@article{zhou2026ctmamba,
+  author  = {Zhou, Yannan and Yang, Yi},
+  title   = {CTMamba: A Center-Targeted Mamba Network for Hyperspectral Image Classification},
+  journal = {IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
+  year    = {2026}
+}</code></pre>
+              </div>
+            </div>
           </article>
         </div>
       </section>
 
-      <section id="contact" class="sec">
-        <h2 class="section-title">Connect</h2>
-        <div class="contact-links">
-          <a href="mailto:yeluoqiushuang@outlook.com" class="link-item">
-            <i class="fas fa-arrow-right"></i> yeluoqiushuang@outlook.com
-          </a>
-          <a href="https://github.com/ylqsysy" target="_blank" class="link-item">
-            <i class="fas fa-arrow-right"></i> github.com/ylqsysy
-          </a>
-          <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" class="link-item">
-            <i class="fas fa-arrow-right"></i> ORCID: 0009-0007-7879-4081
-          </a>
+      <!-- Section 04: Background -->
+      <section id="background" class="band-section obs-section" data-plate="04">
+        <div class="section-header">
+          <span class="section-index">04</span>
+          <h2 class="section-heading">Education</h2>
+        </div>
+
+        <div class="edu-ledger">
+          <div class="edu-row">
+            <div class="edu-degree">M.Sc. Candidate</div>
+            <div class="edu-field">Surveying Engineering</div>
+            <div class="edu-inst">
+              <a href="https://www.jou.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Jiangsu Ocean University</a>
+            </div>
+          </div>
+          <div class="edu-row">
+            <div class="edu-degree">B.Sc., 2024</div>
+            <div class="edu-field">Data Science and Big Data Technology</div>
+            <div class="edu-inst">
+              <a href="https://www.zafu.edu.cn" target="_blank" rel="noopener noreferrer" class="inline-link">Zhejiang A&amp;F University</a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <footer class="footer">
-        <p>&copy; <span id="yr">2026</span> Yannan Zhou. Designed with organic minimalism.</p>
+      <!-- Section 05: Contact -->
+      <section id="contact" class="band-section obs-section" data-plate="05">
+        <div class="section-header">
+          <span class="section-index">05</span>
+          <h2 class="section-heading">Contact</h2>
+        </div>
+
+        <div class="contact-directory">
+          <div class="contact-row">
+            <span class="contact-num">01</span>
+            <span class="contact-kind">Email</span>
+            <div class="contact-val-group">
+              <a href="mailto:yeluoqiushuang@outlook.com" class="contact-val">yeluoqiushuang@outlook.com</a>
+              <button type="button" class="copy-btn copy-inline" data-copy-text="yeluoqiushuang@outlook.com" aria-label="Copy email address">Copy</button>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-num">02</span>
+            <span class="contact-kind">GitHub</span>
+            <a href="https://github.com/ylqsysy" target="_blank" rel="noopener noreferrer" class="contact-val">github.com/ylqsysy &#8599;</a>
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-num">03</span>
+            <span class="contact-kind">ORCID</span>
+            <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="noopener noreferrer" class="contact-val">0009-0007-7879-4081 &#8599;</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="colophon">
+        <div class="colophon-left">
+          <span>&copy; <span id="yr">2026</span> Yannan Zhou</span>
+          <span class="colophon-sep" aria-hidden="true">/</span>
+          <span>Jiangsu Ocean University</span>
+        </div>
+        <button type="button" class="back-top" id="back-top">Back to top &#8593;</button>
       </footer>
     </main>
   </div>
-  <script src="js/main.js"></script>
+
+  <script src="js/main.js?v=5"></script>
 </body>
 </html>

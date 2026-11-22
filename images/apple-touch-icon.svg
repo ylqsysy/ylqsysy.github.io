@@ -1,8 +1,28 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- Top Face -->
-  <path d="M 256 32 L 480 160 L 256 288 L 32 160 Z" fill="#677c6a"/>
-  <!-- Left Face -->
-  <path d="M 32 160 L 256 288 L 256 480 L 32 352 Z" fill="#465c49"/>
-  <!-- Right Face -->
-  <path d="M 480 160 L 256 288 L 256 480 L 480 352 Z" fill="#2d3b2f"/>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="108" fill="#163B30"/>
+  <rect x="28" y="28" width="456" height="456" rx="84" stroke="#2E6353" stroke-width="4"/>
+
+  <!-- Fine meridian and parallel arcs -->
+  <circle cx="256" cy="256" r="192" stroke="#2E6353" stroke-width="3" stroke-dasharray="10 10"/>
+  <circle cx="256" cy="256" r="144" stroke="#2E6353" stroke-width="2.5"/>
+
+  <!-- Corner fiducial marks -->
+  <path d="M68 96V68H96" stroke="#7FC4AE" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M444 96V68H416" stroke="#7FC4AE" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M68 416V444H96" stroke="#7FC4AE" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M444 416V444H416" stroke="#7FC4AE" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Hyperspectral prism planes -->
+  <path d="M256 102L404 188V324L256 410L108 324V188L256 102Z" stroke="#7FC4AE" stroke-width="11" stroke-linejoin="round"/>
+  <path d="M256 156L352 212V300L256 356L160 300V212L256 156Z" stroke="#F4F1EA" stroke-width="11" stroke-linejoin="round"/>
+
+  <!-- Geodetic reticle crosshairs -->
+  <line x1="256" y1="80" x2="256" y2="180" stroke="#F4F1EA" stroke-width="11" stroke-linecap="round"/>
+  <line x1="256" y1="332" x2="256" y2="432" stroke="#F4F1EA" stroke-width="11" stroke-linecap="round"/>
+  <line x1="80" y1="256" x2="180" y2="256" stroke="#F4F1EA" stroke-width="11" stroke-linecap="round"/>
+  <line x1="332" y1="256" x2="432" y2="256" stroke="#F4F1EA" stroke-width="11" stroke-linecap="round"/>
+
+  <!-- Center target pixel -->
+  <circle cx="256" cy="256" r="44" stroke="#F4F1EA" stroke-width="10"/>
+  <circle cx="256" cy="256" r="22" fill="#D4653B"/>
 </svg>
