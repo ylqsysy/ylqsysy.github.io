@@ -7,8 +7,8 @@
   <meta name="description" content="Academic homepage of Yannan Zhou (周彦男), M.Sc. candidate in Surveying Engineering at Jiangsu Ocean University. Research in hyperspectral image classification, multi-source remote sensing, and spatiotemporal forecasting.">
   <meta name="author" content="Yannan Zhou">
 
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=8">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.svg?v=8">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=10">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.svg?v=10">
   <link rel="manifest" href="site.webmanifest">
 
   <!-- Open Graph -->
@@ -37,10 +37,25 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Reading-safe full-page ambient background: periphery Bayer mosaic + faint drafting arcs -->
+  <div class="page-ambient-bg" aria-hidden="true">
+    <canvas id="page-mosaic-bg" class="page-mosaic-canvas"></canvas>
+    <svg class="page-drafting-arcs" id="page-drafting-arcs" viewBox="0 0 1440 960" preserveAspectRatio="xMidYMid slice" fill="none">
+      <g stroke="currentColor" stroke-width="1">
+        <circle cx="130" cy="240" r="220"/>
+        <circle cx="130" cy="240" r="340" stroke-dasharray="4 6"/>
+        <circle cx="1330" cy="680" r="260"/>
+        <circle cx="1330" cy="680" r="390" stroke-dasharray="4 6"/>
+        <line x1="68" y1="0" x2="68" y2="960"/>
+        <line x1="1372" y1="0" x2="1372" y2="960"/>
+      </g>
+    </svg>
+  </div>
 
   <!-- Shared SVG squircle clip-path for continuous-curvature portrait framing -->
   <svg width="0" height="0" style="position:absolute;pointer-events:none;" aria-hidden="true">
@@ -57,22 +72,16 @@
       <a href="#top" class="brand" aria-label="Yannan Zhou home">
         <svg class="brand-mark" width="24" height="24" viewBox="0 0 512 512" fill="none" aria-hidden="true">
           <path d="M 256 16 C 480 16 496 32 496 256 C 496 480 480 496 256 496 C 32 496 16 480 16 256 C 16 32 32 16 256 16 Z" fill="#141413"/>
-          <g fill="#FAF9F5">
-            <rect x="236" y="84" width="40" height="84"/>
-            <rect x="236" y="344" width="40" height="84"/>
-            <rect x="84" y="236" width="84" height="40"/>
-            <rect x="344" y="236" width="84" height="40"/>
-            <rect x="132" y="132" width="36" height="36"/>
-            <rect x="168" y="168" width="36" height="36"/>
-            <rect x="344" y="132" width="36" height="36"/>
-            <rect x="308" y="168" width="36" height="36"/>
-            <rect x="132" y="344" width="36" height="36"/>
-            <rect x="168" y="308" width="36" height="36"/>
-            <rect x="344" y="344" width="36" height="36"/>
-            <rect x="308" y="308" width="36" height="36"/>
-          </g>
-          <rect x="216" y="216" width="80" height="80" fill="#D97757"/>
-          <rect x="236" y="236" width="40" height="40" fill="#FAF9F5"/>
+          <path d="M 118 128 H 174 L 246 258 V 384 H 196 V 268 L 118 128 Z" fill="#FAF9F5"/>
+          <polygon points="246,258 294,174 344,174 282,282" fill="#FAF9F5"/>
+          <rect x="326" y="128" width="36" height="36" fill="#FAF9F5"/>
+          <rect x="362" y="128" width="36" height="36" fill="#D97757"/>
+          <rect x="326" y="164" width="36" height="36" fill="#D97757"/>
+          <rect x="362" y="164" width="32" height="32" fill="#FAF9F5"/>
+          <rect x="290" y="200" width="36" height="36" fill="#D97757"/>
+          <rect x="362" y="222" width="32" height="32" fill="#D97757"/>
+          <rect x="318" y="294" width="32" height="32" fill="#FAF9F5"/>
+          <rect x="284" y="336" width="34" height="34" fill="#D97757"/>
         </svg>
         <span class="brand-name">Yannan Zhou</span>
         <span class="brand-zh" lang="zh-Hans">周彦男</span>
@@ -109,7 +118,7 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="site-main">
     <!-- Hero -->
     <section class="hero-band" aria-labelledby="hero-heading">
       <div class="container">
@@ -168,11 +177,50 @@
               </div>
               <figcaption class="portrait-caption">
                 <span>YANNAN ZHOU</span>
+                <span class="portrait-dither-rule" aria-hidden="true"></span>
                 <span>JOU</span>
               </figcaption>
             </figure>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Compact Visual Plate 1: Anthropic Split Engraving x Nous Low-Fi Bayer Mosaic Ribbon -->
+    <section class="editorial-ribbon-band reveal" aria-label="Editorial visual motif">
+      <div class="container">
+        <figure class="split-art-ribbon">
+          <div class="ribbon-left" aria-hidden="true">
+            <svg viewBox="0 0 360 112" preserveAspectRatio="xMidYMid slice" fill="none">
+              <g stroke="currentColor" stroke-opacity="0.22" stroke-width="1">
+                <line x1="40" y1="0" x2="40" y2="112"/>
+                <line x1="80" y1="0" x2="80" y2="112"/>
+                <line x1="120" y1="0" x2="120" y2="112"/>
+                <line x1="160" y1="0" x2="160" y2="112"/>
+                <line x1="200" y1="0" x2="200" y2="112"/>
+                <line x1="240" y1="0" x2="240" y2="112"/>
+                <line x1="280" y1="0" x2="280" y2="112"/>
+                <line x1="320" y1="0" x2="320" y2="112"/>
+                <line x1="0" y1="28" x2="360" y2="28"/>
+                <line x1="0" y1="56" x2="360" y2="56"/>
+                <line x1="0" y1="84" x2="360" y2="84"/>
+              </g>
+              <g stroke="currentColor" stroke-width="1.2">
+                <circle cx="180" cy="56" r="44"/>
+                <circle cx="180" cy="56" r="28" stroke-dasharray="3 3"/>
+                <ellipse cx="180" cy="56" rx="68" ry="20" transform="rotate(-14 180 56)"/>
+                <line x1="124" y1="56" x2="236" y2="56"/>
+                <line x1="180" y1="8" x2="180" y2="104"/>
+              </g>
+              <circle cx="180" cy="56" r="3.5" fill="#D97757"/>
+            </svg>
+          </div>
+          <div class="ribbon-right" aria-hidden="true">
+            <canvas id="editorial-mosaic" class="mosaic-canvas"></canvas>
+            <div class="lofi-film-grain"></div>
+          </div>
+        </figure>
+        <p class="ribbon-caption">FIG. 01 · EARTH OBSERVATION &amp; GEOSPATIAL MODELING</p>
       </div>
     </section>
 
@@ -193,24 +241,33 @@
             </p>
           </div>
 
-          <dl class="profile-facts">
-            <div class="fact-row">
-              <dt>Department</dt>
-              <dd>Surveying Engineering</dd>
+          <div class="profile-aside">
+            <!-- Compact Ex-Libris Art Stamp (84x84) -->
+            <div class="exlibris-block">
+              <div class="exlibris-stamp" aria-hidden="true">
+                <canvas id="exlibris-mosaic" class="mosaic-canvas"></canvas>
+              </div>
+              <div class="exlibris-meta">
+                <span class="exlibris-kicker">Field &amp; Discipline</span>
+                <span class="exlibris-title">Surveying &amp; Earth Observation</span>
+              </div>
             </div>
-            <div class="fact-row">
-              <dt>Institution</dt>
-              <dd>Jiangsu Ocean University</dd>
-            </div>
-            <div class="fact-row">
-              <dt>Undergraduate</dt>
-              <dd>Data Science and Big Data Technology, 2024</dd>
-            </div>
-          </dl>
+
+            <dl class="profile-facts">
+              <div class="fact-row">
+                <dt>Institution</dt>
+                <dd>Jiangsu Ocean University</dd>
+              </div>
+              <div class="fact-row">
+                <dt>Undergraduate</dt>
+                <dd>Data Science and Big Data Technology, 2024</dd>
+              </div>
+            </dl>
+          </div>
         </div>
       </section>
 
-      <!-- Section 02: Research (Pure Information Cards, Zero Decorative Distractions) -->
+      <!-- Section 02: Research (Pure Information Cards, Zero Mosaic Distractions) -->
       <section id="research" class="editorial-section obs-section reveal">
         <div class="section-rule-header">
           <span class="section-label">02 / Research</span>
@@ -261,7 +318,7 @@
         </div>
       </section>
 
-      <!-- Section 03: Publications (Open Hairline Ledger) -->
+      <!-- Section 03: Publications (Open Hairline Ledger + Compact Left-Rail Thumbnail) -->
       <section id="publications" class="editorial-section obs-section reveal">
         <div class="section-rule-header">
           <span class="section-label">03 / Publications</span>
@@ -272,6 +329,9 @@
             <div class="pub-meta">
               <span class="pub-year">2026</span>
               <span class="pub-venue-short">IEEE J-STARS</span>
+              <div class="pub-thumb" aria-hidden="true">
+                <canvas id="pub-mosaic" class="mosaic-canvas"></canvas>
+              </div>
             </div>
 
             <div class="pub-body">
@@ -311,7 +371,7 @@
       </section>
 
       <!-- Section 04: Education (Open Hairline Catalogue) -->
-      <section id="background" class="editorial-section obs-section reveal">
+      <section id="background" class="editorial-section obs-section reveal last-section">
         <div class="section-rule-header">
           <span class="section-label">04 / Education</span>
         </div>
@@ -333,63 +393,30 @@
           </div>
         </div>
       </section>
-
-      <!-- Section 05: Contact (Open Hairline Catalogue) -->
-      <section id="contact" class="editorial-section obs-section reveal last-section">
-        <div class="section-rule-header">
-          <span class="section-label">05 / Contact</span>
-        </div>
-
-        <div class="open-ledger">
-          <div class="contact-row">
-            <span class="contact-kind">Email</span>
-            <div class="contact-val-group">
-              <a href="mailto:yeluoqiushuang@outlook.com" class="contact-val">yeluoqiushuang@outlook.com</a>
-              <button type="button" class="copy-btn" data-copy-text="yeluoqiushuang@outlook.com" aria-label="Copy email address">Copy</button>
-            </div>
-          </div>
-
-          <div class="contact-row">
-            <span class="contact-kind">GitHub</span>
-            <a href="https://github.com/ylqsysy" target="_blank" rel="noopener noreferrer" class="contact-val">github.com/ylqsysy &#8599;</a>
-          </div>
-
-          <div class="contact-row">
-            <span class="contact-kind">ORCID</span>
-            <a href="https://orcid.org/0009-0007-7879-4081" target="_blank" rel="noopener noreferrer" class="contact-val">0009-0007-7879-4081 &#8599;</a>
-          </div>
-        </div>
-      </section>
     </div>
   </main>
 
-  <!-- Full-Bleed Charcoal Book-Cover Footer: Anthropic 4:8 Grid x Nous Monochrome Bayer Edge & Ghost Watermark -->
-  <footer class="slate-footer" id="site-footer">
+  <!-- Full-Bleed Charcoal Footer (Single Authoritative Contact & Colophon: Anthropic 4:8 Grid x Nous Bayer Horizon & Ghost Wordmark) -->
+  <footer class="slate-footer obs-section" id="contact">
     <canvas id="footer-mosaic" class="footer-mosaic-canvas" aria-hidden="true"></canvas>
-    <div class="footer-ghost-word" id="footer-ghost" aria-hidden="true">Yannan Zhou</div>
+    <div class="footer-ghost-word" aria-hidden="true">Yannan Zhou</div>
 
     <div class="container footer-inner">
       <div class="footer-grid">
         <div class="footer-brand-col">
           <div class="footer-mark-row">
             <svg width="28" height="28" viewBox="0 0 512 512" fill="none" aria-hidden="true">
-              <path d="M 256 16 C 480 16 496 32 496 256 C 496 480 480 496 256 496 C 32 496 16 480 16 256 C 16 32 32 16 256 16 Z" fill="#1F1E1D" stroke="#3D3D3A" stroke-width="10"/>
-              <g fill="#FAF9F5">
-                <rect x="236" y="84" width="40" height="84"/>
-                <rect x="236" y="344" width="40" height="84"/>
-                <rect x="84" y="236" width="84" height="40"/>
-                <rect x="344" y="236" width="84" height="40"/>
-                <rect x="132" y="132" width="36" height="36"/>
-                <rect x="168" y="168" width="36" height="36"/>
-                <rect x="344" y="132" width="36" height="36"/>
-                <rect x="308" y="168" width="36" height="36"/>
-                <rect x="132" y="344" width="36" height="36"/>
-                <rect x="168" y="308" width="36" height="36"/>
-                <rect x="344" y="344" width="36" height="36"/>
-                <rect x="308" y="308" width="36" height="36"/>
-              </g>
-              <rect x="216" y="216" width="80" height="80" fill="#D97757"/>
-              <rect x="236" y="236" width="40" height="40" fill="#FAF9F5"/>
+              <path d="M 256 16 C 480 16 496 32 496 256 C 496 480 480 496 256 496 C 32 496 16 480 16 256 C 16 32 32 16 256 16 Z" fill="#1F1E1D" stroke="#3D3D3A" stroke-width="14"/>
+              <path d="M 118 128 H 174 L 246 258 V 384 H 196 V 268 L 118 128 Z" fill="#FAF9F5"/>
+              <polygon points="246,258 294,174 344,174 282,282" fill="#FAF9F5"/>
+              <rect x="326" y="128" width="36" height="36" fill="#FAF9F5"/>
+              <rect x="362" y="128" width="36" height="36" fill="#D97757"/>
+              <rect x="326" y="164" width="36" height="36" fill="#D97757"/>
+              <rect x="362" y="164" width="32" height="32" fill="#FAF9F5"/>
+              <rect x="290" y="200" width="36" height="36" fill="#D97757"/>
+              <rect x="362" y="222" width="32" height="32" fill="#D97757"/>
+              <rect x="318" y="294" width="32" height="32" fill="#FAF9F5"/>
+              <rect x="284" y="336" width="34" height="34" fill="#D97757"/>
             </svg>
             <span class="footer-name">Yannan Zhou</span>
           </div>
@@ -402,7 +429,7 @@
             <span class="footer-row-key">Email</span>
             <div class="footer-row-actions">
               <a href="mailto:yeluoqiushuang@outlook.com" class="footer-row-val">yeluoqiushuang@outlook.com</a>
-              <button type="button" class="footer-pill copy-btn" data-copy-text="yeluoqiushuang@outlook.com">Copy</button>
+              <button type="button" class="footer-pill copy-btn" data-copy-text="yeluoqiushuang@outlook.com" aria-label="Copy email address">Copy</button>
             </div>
           </div>
 
@@ -421,7 +448,7 @@
             <span class="footer-row-val">github.com/ylqsysy/CTMamba &#8599;</span>
           </a>
 
-          <div class="footer-row footer-row-bottom">
+          <div class="footer-row">
             <span class="footer-row-key">Navigation</span>
             <button type="button" class="footer-pill" id="back-top">Back to top &#8593;</button>
           </div>
@@ -430,6 +457,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=8"></script>
+  <script src="js/main.js?v=9"></script>
 </body>
 </html>

@@ -1,10 +1,10 @@
-/* Yannan Zhou - Anthropic Editorial Precision x Nous Research Archival Tactility */
+/* Yannan Zhou - Anthropic Editorial Craft x Nous Archival Mosaic & Reading-Safe Backdrop */
 
 :root {
   /* Anthropic Ivory Mineral Palette */
   --bg: #faf9f5;
   --surface: #f5f4ed;
-  --surface-alt: #f0eee6;
+  --surface-alt: #ede9de;
   --surface-btn: #e8e6dc;
   --border: #dedcd1;
   --border-strong: #c2c0b6;
@@ -35,7 +35,7 @@
   /* Anthropic Slate Palette */
   --bg: #141413;
   --surface: #1f1e1d;
-  --surface-alt: #262624;
+  --surface-alt: #282623;
   --surface-btn: #262624;
   --border: #3d3d3a;
   --border-strong: #5e5d59;
@@ -77,16 +77,20 @@ body {
   overflow-x: clip;
 }
 
-/* Nous-inspired subtle archival cotton-paper grain */
+/* Full-page tactile archival cotton-paper grain */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 120;
-  opacity: 0.025;
+  opacity: 0.038;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.046;
 }
 
 a {
@@ -126,9 +130,50 @@ button {
   top: 12px;
 }
 
+/* Reading-safe full-page ambient backdrop (z-index 0, clear reading corridor in center) */
+.page-ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-mosaic-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.page-drafting-arcs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 112vh;
+  color: var(--ink);
+  opacity: 0.055;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.mosaic-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.site-main {
+  position: relative;
+  z-index: 1;
+}
+
 .container {
   width: 100%;
-  max-width: 1180px;
+  max-width: 1160px;
   margin: 0 auto;
   padding-left: 40px;
   padding-right: 40px;
@@ -176,7 +221,7 @@ button {
 }
 
 .brand:hover .brand-mark {
-  transform: rotate(10deg);
+  transform: rotate(8deg);
 }
 
 .brand-name {
@@ -332,13 +377,13 @@ button {
 /* Hero Band */
 .hero-band {
   padding-top: 52px;
-  padding-bottom: 72px;
+  padding-bottom: 44px;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.82fr);
-  gap: 64px;
+  grid-template-columns: minmax(0, 1.42fr) minmax(0, 0.8fr);
+  gap: 56px;
   align-items: start;
 }
 
@@ -371,13 +416,12 @@ button {
   vertical-align: middle;
 }
 
-/* Anthropic Dual-Face Hero Statement */
 .hero-statement {
-  font-size: clamp(1.22rem, 1.85vw, 1.48rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.44rem);
   line-height: 1.48;
   letter-spacing: -0.01em;
   max-width: 54ch;
-  margin-bottom: 36px;
+  margin-bottom: 34px;
 }
 
 .statement-lead {
@@ -392,13 +436,12 @@ button {
   color: var(--ink-body);
 }
 
-/* Open Hairline Dossier Strip */
 .dossier-rules {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 .dossier-item {
@@ -472,10 +515,10 @@ button {
   box-shadow: 0 0 0 1px var(--clay-deep);
 }
 
-/* Portrait Mount: Pure Warm-Sand Squircle Frame */
+/* Portrait Mount: Anthropic Split Warm-Paper Tint + Subtle Dither Rule */
 .portrait-mount {
   padding: 14px;
-  background: var(--surface);
+  background: linear-gradient(90deg, var(--surface) 0%, var(--surface) 56%, var(--surface-alt) 56%, var(--surface-alt) 100%);
   border: 1px solid var(--border);
   border-radius: var(--r-xl);
   corner-shape: squircle;
@@ -514,7 +557,8 @@ button {
 
 .portrait-caption {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
   margin-top: 12px;
   padding: 0 6px;
   font-family: var(--font-mono);
@@ -523,13 +567,73 @@ button {
   color: var(--ink-muted);
 }
 
-/* Main Content Flow & Anthropic Hairline Section Dividers */
+.portrait-dither-rule {
+  flex: 1;
+  height: 4px;
+  opacity: 0.42;
+  background-image: radial-gradient(var(--ink-muted) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* Compact Visual Plate 1: Split Engraving x Bayer Mosaic Ribbon (112px tall) */
+.editorial-ribbon-band {
+  padding-bottom: 52px;
+}
+
+.split-art-ribbon {
+  display: grid;
+  grid-template-columns: 0.36fr 0.64fr;
+  height: 112px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  corner-shape: squircle;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.ribbon-left {
+  background: var(--surface-alt);
+  color: var(--ink);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.ribbon-left svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ribbon-right {
+  position: relative;
+  background: #141413;
+  overflow: hidden;
+}
+
+.lofi-film-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: radial-gradient(rgba(250, 249, 245, 0.55) 0.7px, transparent 0.7px);
+  background-size: 3px 3px;
+}
+
+.ribbon-caption {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+}
+
+/* Main Content Flow */
 .main-flow {
-  padding-bottom: 88px;
+  padding-bottom: 84px;
 }
 
 .editorial-section {
-  padding-bottom: 68px;
+  padding-bottom: 64px;
 }
 
 .last-section {
@@ -540,7 +644,7 @@ button {
   padding: 16px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  margin-bottom: 36px;
+  margin-bottom: 34px;
 }
 
 .section-label {
@@ -550,11 +654,11 @@ button {
   color: var(--ink);
 }
 
-/* Profile */
+/* Profile + Compact Ex-Libris Stamp (84x84) */
 .profile-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.9fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.92fr);
+  gap: 52px;
   align-items: start;
 }
 
@@ -581,12 +685,56 @@ button {
   border-bottom-color: var(--clay-deep);
 }
 
+.exlibris-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  margin-bottom: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  corner-shape: squircle;
+}
+
+.exlibris-stamp {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  corner-shape: squircle;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: #141413;
+}
+
+.exlibris-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exlibris-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+.exlibris-title {
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
 .profile-facts {
   border-top: 1px solid var(--border);
 }
 
 .fact-row {
-  padding: 15px 0;
+  padding: 14px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -597,12 +745,12 @@ button {
 }
 
 .fact-row dd {
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   font-weight: 500;
   color: var(--ink);
 }
 
-/* Research Cards: Anthropic #F5F4ED Squircle Surface, Zero Shadow, Content-First */
+/* Research Cards: 100% Pure Information, Zero Decorative Graphics */
 .research-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -649,7 +797,7 @@ button {
 
 .research-card h3 {
   font-family: var(--font-sans);
-  font-size: 1.32rem;
+  font-size: 1.3rem;
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.015em;
@@ -675,7 +823,7 @@ button {
   color: var(--ink-dim);
 }
 
-/* Open Hairline Ledgers (Publications, Education, Contact) */
+/* Open Hairline Ledgers (Publications & Education) */
 .open-ledger {
   border-bottom: 1px solid var(--border);
 }
@@ -703,6 +851,17 @@ button {
 .pub-venue-short {
   font-size: 0.8125rem;
   color: var(--ink-muted);
+}
+
+.pub-thumb {
+  width: 128px;
+  height: 76px;
+  margin-top: 12px;
+  border-radius: var(--r-sm);
+  corner-shape: squircle;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #141413;
 }
 
 .pub-body {
@@ -850,7 +1009,6 @@ button {
   align-items: baseline;
   padding: 20px 0;
   border-bottom: 1px solid var(--border);
-  transition: color 0.2s ease;
 }
 
 .edu-row:last-child {
@@ -875,50 +1033,13 @@ button {
   text-align: right;
 }
 
-/* Contact Rows */
-.contact-row {
-  display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  gap: 24px;
-  align-items: center;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.contact-row:last-child {
-  border-bottom: none;
-}
-
-.contact-kind {
-  font-size: 0.85rem;
-  color: var(--ink-muted);
-}
-
-.contact-val-group {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.contact-val {
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--ink);
-  transition: color 0.2s ease;
-}
-
-.contact-val:hover {
-  color: var(--ink-dim);
-}
-
-/* Full-Bleed Charcoal Footer (Anthropic 4:8 Grid x Nous Monochrome Bayer & Ghost Wordmark) */
+/* Full-Bleed Charcoal Footer (Single Authoritative Contact & Colophon) */
 .slate-footer {
   position: relative;
+  z-index: 2;
   background: #141413;
   color: #faf9f5;
-  padding-top: 76px;
+  padding-top: 132px;
   padding-bottom: 64px;
   overflow: hidden;
   border-top: 1px solid #262624;
@@ -929,14 +1050,13 @@ button {
   top: 0;
   left: 0;
   width: 100%;
-  height: 150px;
+  height: 136px;
   display: block;
   pointer-events: none;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  opacity: 0.55;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 62%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 62%, rgba(0, 0, 0, 0) 100%);
 }
 
 .footer-ghost-word {
@@ -950,10 +1070,9 @@ button {
   letter-spacing: -0.03em;
   line-height: 0.85;
   white-space: nowrap;
-  color: rgba(250, 249, 245, 0.038);
+  color: rgba(250, 249, 245, 0.042);
   pointer-events: none;
   user-select: none;
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .footer-inner {
@@ -971,7 +1090,7 @@ button {
 .footer-brand-col {
   display: flex;
   flex-direction: column;
-  min-height: 220px;
+  min-height: 240px;
 }
 
 .footer-mark-row {
@@ -1057,7 +1176,7 @@ button {
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
 
   .hero-portrait-col {
@@ -1097,16 +1216,23 @@ button {
   }
 
   .pub-row,
-  .edu-row,
-  .contact-row {
+  .edu-row {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 12px;
   }
 
   .pub-meta {
     flex-direction: row;
-    align-items: baseline;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 14px;
+  }
+
+  .pub-thumb {
+    margin-top: 0;
+    margin-left: auto;
+    width: 96px;
+    height: 54px;
   }
 
   .edu-inst {
@@ -1130,12 +1256,31 @@ button {
   }
 
   .hero-band {
-    padding-top: 36px;
-    padding-bottom: 52px;
+    padding-top: 34px;
+    padding-bottom: 32px;
+  }
+
+  .editorial-ribbon-band {
+    padding-bottom: 40px;
+  }
+
+  .split-art-ribbon {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .ribbon-left {
+    height: 64px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ribbon-right {
+    height: 76px;
   }
 
   .editorial-section {
-    padding-bottom: 52px;
+    padding-bottom: 48px;
   }
 
   .dossier-rules {
@@ -1156,6 +1301,14 @@ button {
     padding: 24px;
   }
 
+  .slate-footer {
+    padding-top: 112px;
+  }
+
+  .footer-mosaic-canvas {
+    height: 116px;
+  }
+
   .footer-row {
     flex-direction: column;
     align-items: flex-start;
@@ -1166,6 +1319,10 @@ button {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .page-drafting-arcs {
+    transform: none !important;
   }
 
   *,

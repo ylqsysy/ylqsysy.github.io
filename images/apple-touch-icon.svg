@@ -1,33 +1,19 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="512" height="512" fill="#141413"/>
-  <path d="M 256 26 C 470 26 486 42 486 256 C 486 470 470 486 256 486 C 42 486 26 470 26 256 C 26 42 42 26 256 26 Z" stroke="#2D2B27" stroke-width="4"/>
+  <path d="M 256 26 C 470 26 486 42 486 256 C 486 470 470 486 256 486 C 42 486 26 470 26 256 C 26 42 42 26 256 26 Z" stroke="#2E2C28" stroke-width="5"/>
 
-  <!-- Subtle corner mosaic markers -->
-  <g fill="#57554F">
-    <rect x="64" y="64" width="16" height="16"/>
-    <rect x="432" y="64" width="16" height="16"/>
-    <rect x="64" y="432" width="16" height="16"/>
-    <rect x="432" y="432" width="16" height="16"/>
-  </g>
+  <!-- Anthropic-inspired crisp architectural Y-stroke -->
+  <path d="M 118 128 H 174 L 246 258 V 384 H 196 V 268 L 118 128 Z" fill="#FAF9F5"/>
+  <polygon points="246,258 294,174 344,174 282,282" fill="#FAF9F5"/>
 
-  <!-- Low-fi stepped pixel spectral burst -->
-  <g fill="#FAF9F5">
-    <rect x="236" y="88" width="40" height="80"/>
-    <rect x="236" y="344" width="40" height="80"/>
-    <rect x="88" y="236" width="80" height="40"/>
-    <rect x="344" y="236" width="80" height="40"/>
-
-    <rect x="136" y="136" width="34" height="34"/>
-    <rect x="170" y="170" width="34" height="34"/>
-    <rect x="342" y="136" width="34" height="34"/>
-    <rect x="308" y="170" width="34" height="34"/>
-    <rect x="136" y="342" width="34" height="34"/>
-    <rect x="170" y="308" width="34" height="34"/>
-    <rect x="342" y="342" width="34" height="34"/>
-    <rect x="308" y="308" width="34" height="34"/>
-  </g>
-
-  <!-- Anthropic terracotta pixel core -->
-  <rect x="216" y="216" width="80" height="80" fill="#D97757"/>
-  <rect x="236" y="236" width="40" height="40" fill="#FAF9F5"/>
+  <!-- Nous-inspired low-fi stepped mosaic pixels dissolving from the geometry -->
+  <rect x="326" y="128" width="36" height="36" fill="#FAF9F5"/>
+  <rect x="362" y="128" width="36" height="36" fill="#D97757"/>
+  <rect x="326" y="164" width="36" height="36" fill="#D97757"/>
+  <rect x="362" y="164" width="32" height="32" fill="#FAF9F5"/>
+  <rect x="290" y="200" width="36" height="36" fill="#D97757"/>
+  <rect x="362" y="222" width="32" height="32" fill="#D97757"/>
+  <rect x="318" y="294" width="32" height="32" fill="#FAF9F5"/>
+  <rect x="284" y="336" width="34" height="34" fill="#D97757"/>
+  <rect x="334" y="352" width="26" height="26" fill="#D97757"/>
 </svg>
